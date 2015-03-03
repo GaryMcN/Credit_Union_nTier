@@ -103,6 +103,41 @@ namespace DAL
                 cxn.Close();
             }
         }
+        public void CreateTransaction(TransactionModel newTransaction, AccountModel account)
+        {
+            using (SqlConnection cxn = new SqlConnection(cxnString))
+            {
+                newTransaction.AccountID = account.AccountID;
+
+                SqlCommand cmdTransaction = new SqlCommand("spAddTransaction", cxn);
+                cmdTransaction.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter accountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                accountIDParam.Value = newTransaction.AccountID;
+
+                SqlParameter amountParam = new SqlParameter("@Amount", SqlDbType.Int);
+                amountParam.Value = newTransaction.Amount;
+
+                SqlParameter typeParam = new SqlParameter("@Type", SqlDbType.NVarChar, 50);
+                typeParam.Value = newTransaction.Type;
+
+                SqlParameter descriptionParam = new SqlParameter("@Description", SqlDbType.NVarChar, 250);
+                descriptionParam.Value = newTransaction.Description;
+
+                SqlParameter transactionIDParam = new SqlParameter("@TransactionID", SqlDbType.Int);
+                transactionIDParam.Direction = ParameterDirection.Output;
+
+                cmdTransaction.Parameters.Add(accountIDParam);
+                cmdTransaction.Parameters.Add(amountParam);
+                cmdTransaction.Parameters.Add(typeParam);
+                cmdTransaction.Parameters.Add(descriptionParam);
+                cmdTransaction.Parameters.Add(transactionIDParam);
+
+                cxn.Open();
+                cmdTransaction.ExecuteNonQuery();
+                cxn.Close();
+            }
+        }
 
         public DataSet GetCustomerAccounts()
         {
