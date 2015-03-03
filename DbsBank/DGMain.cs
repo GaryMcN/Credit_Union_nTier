@@ -72,7 +72,10 @@ namespace DbsBank
 
         private void depositToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using(ProcessTransaction procTrans = new ProcessTransaction())
+            {
+                procTrans.ShowDialog();
+            }
         }
     }
 }
