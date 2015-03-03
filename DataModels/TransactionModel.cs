@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataModels
 {
-    class TransactionModel
+    public class TransactionModel
     {
         public int TransactionID { get; set; }
         public int AccountID { get; set; }
