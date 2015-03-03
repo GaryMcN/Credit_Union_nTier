@@ -40,6 +40,7 @@
             this.lblAccountNumber = new System.Windows.Forms.Label();
             this.txtAccountNumber = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblType
@@ -141,17 +142,26 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(15, 150);
+            this.lblDescription.Location = new System.Drawing.Point(12, 148);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 11;
             this.lblDescription.Text = "Description";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(134, 145);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(138, 64);
+            this.txtDescription.TabIndex = 12;
             // 
             // ProcessTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 221);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.lblAccountNumber);
@@ -186,5 +196,6 @@
         private System.Windows.Forms.Label lblAccountNumber;
         private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtDescription;
     }
 }
