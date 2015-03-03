@@ -118,6 +118,7 @@
             this.depositToolStripMenuItem.Name = "depositToolStripMenuItem";
             this.depositToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.depositToolStripMenuItem.Text = "Deposit Funds";
+            this.depositToolStripMenuItem.Click += new System.EventHandler(this.depositToolStripMenuItem_Click);
             // 
             // withdrawToolStripMenuItem
             // 

@@ -69,5 +69,10 @@ namespace DbsBank
         {
             PrimeMainGrid();
         }
+
+        private void depositToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
