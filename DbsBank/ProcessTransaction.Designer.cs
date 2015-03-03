@@ -61,6 +61,7 @@
             // 
             // cboType
             // 
+            this.cboType.Enabled = false;
             this.cboType.FormattingEnabled = true;
             this.cboType.Items.AddRange(new object[] {
             "Transfer",
@@ -261,14 +262,12 @@
         #endregion
 
         private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.ComboBox cboType;
         private System.Windows.Forms.Label lblAmount;
         private System.Windows.Forms.TextBox txtAmountEuro;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.TextBox txtAmountCent;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblAccountNumber;
         private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.Label lblDescription;
@@ -280,5 +279,7 @@
         private System.Windows.Forms.TextBox txtSortCode;
         private System.Windows.Forms.TextBox txtRecipientSortCode;
         private System.Windows.Forms.TextBox txtRecipientAccNo;
+        public System.Windows.Forms.ComboBox cboType;
+        private System.Windows.Forms.TextBox txtName;
     }
 }
