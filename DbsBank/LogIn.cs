@@ -29,7 +29,6 @@ namespace DbsBank
                 //Auto Login just for testing purposes
                 dgm.ShowDialog();
             }
-            
         }
     }
 }
