@@ -56,5 +56,10 @@ namespace DbsBank
                 // Do the withdrawal/deposit
             }
         }
+
+        public void SetType(int val)
+        {
+            cboType.SelectedIndex = val;
+        }
     }
 }

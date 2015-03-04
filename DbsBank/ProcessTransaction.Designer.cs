@@ -66,7 +66,7 @@
             this.cboType.Items.AddRange(new object[] {
             "Transfer",
             "Withdrawal",
-            "Lodgement"});
+            "Deposit"});
             this.cboType.Location = new System.Drawing.Point(163, 12);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(138, 21);

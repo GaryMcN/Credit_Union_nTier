@@ -74,6 +74,7 @@ namespace DbsBank
         {
             using(ProcessTransaction procTrans = new ProcessTransaction())
             {
+                procTrans.SetType(2);
                 procTrans.ShowDialog();
             }
         }
