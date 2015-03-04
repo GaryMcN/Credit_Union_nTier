@@ -51,13 +51,21 @@ namespace DbsBank
                 accountType = "Savings";
             }
 
-            // Creating two Objects //
+            // TRANSACTION INFO //
+            string description = "Initial Transaction";
+            int amount = 0;
+            int.TryParse(txtInitialBalance.Text, out amount);
+            string type = "Deposit";
+
+
+            // Creating three Objects //
             CustomerModel customer = new CustomerModel(firstName, surname, email, phone, address1, address2, city, county);
             AccountModel account = new AccountModel(accountType, accountNo, sortCode, initialBalance, overDraftLimit);
+            TransactionModel transaction = new TransactionModel(amount, type, description);
 
             // Sending to BLL //
             BLLMngr bllMngr = new BLLMngr();
-            bllMngr.CreateCustomerAccount(customer, account);
+            bllMngr.CreateCustomerAccount(customer, account, transaction);
 
             MessageBox.Show("Customer Account Added");
         }

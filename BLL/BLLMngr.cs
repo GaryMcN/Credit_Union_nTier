@@ -13,11 +13,11 @@ namespace BLL
     public class BLLMngr
     {
         // Taking Objects from AddCustomer //
-        public void CreateCustomerAccount(CustomerModel newCustomer, AccountModel newAccount)
+        public void CreateCustomerAccount(CustomerModel newCustomer, AccountModel newAccount, TransactionModel newTransaction)
         {
             // Sending to DAL //
             DALMngr dalMngr = new DALMngr();
-            dalMngr.CreateCustomerAccount(newCustomer, newAccount);
+            dalMngr.CreateCustomerAccount(newCustomer, newAccount, newTransaction);
         }
 
         public DataSet GetCustomerAccounts()

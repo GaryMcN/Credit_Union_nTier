@@ -15,7 +15,7 @@ namespace DAL
     {
         string cxnString = ConfigurationManager.ConnectionStrings["DbsDB"].ConnectionString;
 
-        public void CreateCustomerAccount(CustomerModel newCustomer, AccountModel newAccount)
+        public void CreateCustomerAccount(CustomerModel newCustomer, AccountModel newAccount, TransactionModel newTransaction)
         {
             using (SqlConnection cxn = new SqlConnection(cxnString))
             {
@@ -100,6 +100,38 @@ namespace DAL
 
                 cxn.Open();
                 cmdAccount.ExecuteNonQuery();
+                cxn.Close();
+
+                
+
+                SqlCommand cmdTransaction = new SqlCommand("spAddTransaction", cxn);
+                cmdTransaction.CommandType = CommandType.StoredProcedure;
+
+                newTransaction.AccountID = Convert.ToInt32(cmdAccount.Parameters["@AccountID"].Value);
+
+                SqlParameter accountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                accountIDParam.Value = newTransaction.AccountID;
+
+                SqlParameter amountParam = new SqlParameter("@Amount", SqlDbType.Int);
+                amountParam.Value = newTransaction.Amount;
+
+                SqlParameter typeParam = new SqlParameter("@Type", SqlDbType.NVarChar, 50);
+                typeParam.Value = newTransaction.Type;
+
+                SqlParameter descriptionParam = new SqlParameter("@Description", SqlDbType.NVarChar, 250);
+                descriptionParam.Value = newTransaction.Description;
+
+                SqlParameter transactionIDParam = new SqlParameter("@TransactionID", SqlDbType.Int);
+                transactionIDParam.Direction = ParameterDirection.Output;
+
+                cmdTransaction.Parameters.Add(accountIDParam);
+                cmdTransaction.Parameters.Add(amountParam);
+                cmdTransaction.Parameters.Add(typeParam);
+                cmdTransaction.Parameters.Add(descriptionParam);
+                cmdTransaction.Parameters.Add(transactionIDParam);
+
+                cxn.Open();
+                cmdTransaction.ExecuteNonQuery();
                 cxn.Close();
             }
         }
