@@ -13,19 +13,19 @@ namespace DataModels
         public string AccountType { get; set; }
         public int AccountNumber { get; set; }
         public int SortCode { get; set; }
-        public int InitialBalance { get; set; }
+        public int Balance { get; set; }
         public int OverdraftLimit { get; set; }
 
         public AccountModel(string accountType,
                             int accountNumber,
                             int sortCode,
-                            int initialBalance,
+                            int balance,
                             int overdraftLimit)
         {
             AccountType = accountType;
             AccountNumber = accountNumber;
             SortCode = sortCode;
-            InitialBalance = initialBalance;
+            Balance = balance;
             OverdraftLimit = overdraftLimit;
         }
                             

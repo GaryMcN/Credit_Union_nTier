@@ -81,8 +81,8 @@ namespace DAL
                 SqlParameter SortCodeParam = new SqlParameter("@SortCode", SqlDbType.Int);
                 SortCodeParam.Value = newAccount.SortCode;
 
-                SqlParameter InitialBalParam = new SqlParameter("@InitialBalance", SqlDbType.Int);
-                InitialBalParam.Value = newAccount.InitialBalance;
+                SqlParameter BalParam = new SqlParameter("@Balance", SqlDbType.Int);
+                BalParam.Value = newAccount.Balance;
 
                 SqlParameter OverDraftParam = new SqlParameter("@OverdraftLimit", SqlDbType.Int);
                 OverDraftParam.Value = newAccount.OverdraftLimit;
@@ -94,7 +94,7 @@ namespace DAL
                 cmdAccount.Parameters.Add(AccTypeParam);
                 cmdAccount.Parameters.Add(AccNumberParam);
                 cmdAccount.Parameters.Add(SortCodeParam);
-                cmdAccount.Parameters.Add(InitialBalParam);
+                cmdAccount.Parameters.Add(BalParam);
                 cmdAccount.Parameters.Add(OverDraftParam);
                 cmdAccount.Parameters.Add(AccIDParam);
 
