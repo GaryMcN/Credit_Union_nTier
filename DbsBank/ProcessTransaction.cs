@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,6 +55,18 @@ namespace DbsBank
             else
             {
                 // Do the withdrawal/deposit
+                // TRANSACTION DETAILS //
+                string type = cboType.Text;
+                string description = txtDescription.Text;
+                string amountEuro = txtAmountEuro.Text.Trim();
+                string amountCent = txtAmountCent.Text.Trim();
+                string amountString = amountEuro + amountCent;
+                int amount;
+                int.TryParse(amountString, out amount);
+     
+
+                // Transaction created //
+                TransactionModel tm = new TransactionModel(amount, type, description);
             }
         }
 

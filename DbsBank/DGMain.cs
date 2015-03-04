@@ -72,10 +72,26 @@ namespace DbsBank
 
         private void depositToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using(ProcessTransaction procTrans = new ProcessTransaction())
+            if (dgvMain.SelectedRows.Count == 1)
             {
-                procTrans.SetType(2);
-                procTrans.ShowDialog();
+            
+                using (ProcessTransaction procTrans = new ProcessTransaction())
+                {
+                    procTrans.SetType(2);
+                    procTrans.ShowDialog();
+                }
+            }
+            else if (dgvMain.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select a single account");
+            }
+            else if (dgvMain.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Please select an account");
+            }
+            else
+            {
+                MessageBox.Show("Error, Please try again");
             }
         }
     }
