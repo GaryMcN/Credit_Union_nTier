@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using BLL;
 
 namespace DbsBank
 {
@@ -23,6 +25,11 @@ namespace DbsBank
 
         private void ProcessTransaction_Load(object sender, EventArgs e)
         {
+            string sort = ConfigurationManager.AppSettings["SortCode"];
+            txtSortCode.Text += sort;
+            // THIS APPENDS INSTEAD OF VALIDATING //
+            string cent = ConfigurationManager.AppSettings["Cent"];
+            txtAmountCent.Text += cent;
             cboType.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -45,29 +52,23 @@ namespace DbsBank
         }
 
         private void btnProcessTransaction_Click(object sender, EventArgs e)
-        {
-            if(transfer)
-            {
-                using(ProcessTransfer procTrans = new ProcessTransfer())
-                {
-                    procTrans.ShowDialog();
-                }
-            }
-            else
-            {
-                // Do the withdrawal/deposit
-                // TRANSACTION DETAILS //
-                string type = cboType.Text;
-                string description = txtDescription.Text;
-                string amountEuro = txtAmountEuro.Text.Trim();
-                string amountCent = txtAmountCent.Text.Trim();
-                string amountString = amountEuro + amountCent;
-                int amount;
-                int.TryParse(amountString, out amount);
+        {            
+            // Do the withdrawal/deposit
+            // TRANSACTION DETAILS //
+            string type = cboType.Text;
+            string description = txtDescription.Text;
+            string amountEuro = txtAmountEuro.Text.Trim();
+            string amountCent = txtAmountCent.Text.Trim();
+            string amountString = amountEuro + amountCent;
+            int amount;
+            int.TryParse(amountString, out amount);
 
-                // Transaction created //
-                TransactionModel tm = new TransactionModel(amount, type, description);
-            }
+            // Transaction obj created //
+            TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
+
+            // BLL instanciated //
+            BLLMngr bllMngr = new BLLMngr();
+            bllMngr.CreateTransaction(transaction);
         }
 
         public void SetType(int val)

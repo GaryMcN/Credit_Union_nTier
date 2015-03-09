@@ -113,6 +113,7 @@
             this.txtAmountCent.Name = "txtAmountCent";
             this.txtAmountCent.Size = new System.Drawing.Size(32, 20);
             this.txtAmountCent.TabIndex = 6;
+            this.txtAmountCent.Text = "00";
             // 
             // lblName
             // 

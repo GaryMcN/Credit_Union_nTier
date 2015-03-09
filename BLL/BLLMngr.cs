@@ -19,7 +19,11 @@ namespace BLL
             DALMngr dalMngr = new DALMngr();
             dalMngr.CreateCustomerAccount(newCustomer, newAccount, newTransaction);
         }
-
+        public void CreateTransaction(TransactionModel newTransaction)
+        {
+            DALMngr dalMngr = new DALMngr();
+            dalMngr.CreateTransaction(newTransaction);
+        }
         public DataSet GetCustomerAccounts()
         {
             DataSet ds = null;

@@ -135,12 +135,10 @@ namespace DAL
                 cxn.Close();
             }
         }
-        public void CreateTransaction(TransactionModel newTransaction, AccountModel account)
+        public void CreateTransaction(TransactionModel newTransaction)
         {
             using (SqlConnection cxn = new SqlConnection(cxnString))
             {
-                newTransaction.AccountID = account.AccountID;
-
                 SqlCommand cmdTransaction = new SqlCommand("spAddTransaction", cxn);
                 cmdTransaction.CommandType = CommandType.StoredProcedure;
 
