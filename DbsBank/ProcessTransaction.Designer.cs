@@ -31,10 +31,6 @@
             this.lblType = new System.Windows.Forms.Label();
             this.cboType = new System.Windows.Forms.ComboBox();
             this.lblAmount = new System.Windows.Forms.Label();
-            this.txtAmountEuro = new System.Windows.Forms.TextBox();
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.lbl2 = new System.Windows.Forms.Label();
-            this.txtAmountCent = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblAccountNumber = new System.Windows.Forms.Label();
@@ -48,6 +44,10 @@
             this.txtSortCode = new System.Windows.Forms.TextBox();
             this.txtRecipientSortCode = new System.Windows.Forms.TextBox();
             this.txtRecipientAccNo = new System.Windows.Forms.TextBox();
+            this.txtAmountEuro = new System.Windows.Forms.TextBox();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.txtAmountCent = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblType
@@ -81,39 +81,6 @@
             this.lblAmount.Size = new System.Drawing.Size(43, 13);
             this.lblAmount.TabIndex = 2;
             this.lblAmount.Text = "Amount";
-            // 
-            // txtAmountEuro
-            // 
-            this.txtAmountEuro.Location = new System.Drawing.Point(163, 175);
-            this.txtAmountEuro.Name = "txtAmountEuro";
-            this.txtAmountEuro.Size = new System.Drawing.Size(84, 20);
-            this.txtAmountEuro.TabIndex = 3;
-            // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(144, 178);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(13, 13);
-            this.lbl1.TabIndex = 4;
-            this.lbl1.Text = "€";
-            // 
-            // lbl2
-            // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(253, 178);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(10, 13);
-            this.lbl2.TabIndex = 5;
-            this.lbl2.Text = ".";
-            // 
-            // txtAmountCent
-            // 
-            this.txtAmountCent.Location = new System.Drawing.Point(269, 175);
-            this.txtAmountCent.Name = "txtAmountCent";
-            this.txtAmountCent.Size = new System.Drawing.Size(32, 20);
-            this.txtAmountCent.TabIndex = 6;
-            this.txtAmountCent.Text = "00";
             // 
             // lblName
             // 
@@ -227,6 +194,41 @@
             this.txtRecipientAccNo.Size = new System.Drawing.Size(138, 20);
             this.txtRecipientAccNo.TabIndex = 19;
             // 
+            // txtAmountEuro
+            // 
+            this.txtAmountEuro.Location = new System.Drawing.Point(163, 175);
+            this.txtAmountEuro.Name = "txtAmountEuro";
+            this.txtAmountEuro.Size = new System.Drawing.Size(84, 20);
+            this.txtAmountEuro.TabIndex = 3;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(145, 176);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(16, 17);
+            this.lbl1.TabIndex = 4;
+            this.lbl1.Text = "€";
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.Location = new System.Drawing.Point(249, 171);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(18, 26);
+            this.lbl2.TabIndex = 5;
+            this.lbl2.Text = ".";
+            // 
+            // txtAmountCent
+            // 
+            this.txtAmountCent.Location = new System.Drawing.Point(269, 175);
+            this.txtAmountCent.Name = "txtAmountCent";
+            this.txtAmountCent.Size = new System.Drawing.Size(32, 20);
+            this.txtAmountCent.TabIndex = 6;
+            this.txtAmountCent.Text = "00";
+            // 
             // ProcessTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,10 +266,6 @@
 
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblAmount;
-        private System.Windows.Forms.TextBox txtAmountEuro;
-        private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.Label lbl2;
-        private System.Windows.Forms.TextBox txtAmountCent;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblAccountNumber;
         private System.Windows.Forms.Label lblDescription;
@@ -282,5 +280,9 @@
         public System.Windows.Forms.ComboBox cboType;
         public System.Windows.Forms.TextBox txtAccountNumber;
         public System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtAmountEuro;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.TextBox txtAmountCent;
     }
 }

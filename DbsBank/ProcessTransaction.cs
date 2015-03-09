@@ -15,7 +15,6 @@ namespace DbsBank
 {
     public partial class ProcessTransaction : Form
     {
-        bool transfer = false;
         public int accountID;
 
         public ProcessTransaction()
@@ -37,13 +36,11 @@ namespace DbsBank
         {
             if (cboType.SelectedItem.ToString() == "Transfer")
             {
-                transfer = true;
                 txtRecipientAccNo.Enabled = true;
                 txtRecipientSortCode.Enabled = true;
             }
             else
             {
-                transfer = false;
                 txtRecipientAccNo.Enabled = false;
                 txtRecipientSortCode.Enabled = false;
                 txtRecipientAccNo.Clear();
@@ -53,22 +50,35 @@ namespace DbsBank
 
         private void btnProcessTransaction_Click(object sender, EventArgs e)
         {            
-            // Do the withdrawal/deposit
-            // TRANSACTION DETAILS //
-            string type = cboType.Text;
-            string description = txtDescription.Text;
-            string amountEuro = txtAmountEuro.Text.Trim();
-            string amountCent = txtAmountCent.Text.Trim();
-            string amountString = amountEuro + amountCent;
-            int amount;
-            int.TryParse(amountString, out amount);
+            if(cboType.SelectedIndex == 2 || cboType.SelectedIndex == 1)
+            {
+                // Do the withdrawal/deposit
+                // TRANSACTION DETAILS //
+                string type = cboType.Text;
+                string description = txtDescription.Text;
+                string amountEuro = txtAmountEuro.Text.Trim();
+                string amountCent = txtAmountCent.Text.Trim();
+                string amountString = amountEuro + amountCent;
+                int amount;
+                int.TryParse(amountString, out amount);
 
-            // Transaction obj created //
-            TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
+                // Transaction obj created //
+                TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
 
-            // BLL instanciated //
-            BLLMngr bllMngr = new BLLMngr();
-            bllMngr.CreateTransaction(transaction);
+                // BLL instanciated //
+                BLLMngr bllMngr = new BLLMngr();
+                bllMngr.CreateTransaction(transaction);
+
+                MessageBox.Show("Transfer Complete");
+            }
+            else if(cboType.SelectedIndex == 0)
+            {
+                using(ProcessTransfer procTransfer = new ProcessTransfer())
+                {
+                    //put values from previous form in here//
+                    procTransfer.ShowDialog();
+                }
+            }
         }
 
         public void SetType(int val)

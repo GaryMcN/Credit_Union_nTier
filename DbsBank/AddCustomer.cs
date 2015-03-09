@@ -38,8 +38,15 @@ namespace DbsBank
             int.TryParse(txtAccountNo.Text, out accountNo);
             int sortCode = 0;
             int.TryParse(txtSortCode.Text, out sortCode);
-            int initialBalance;
-            int.TryParse(txtInitialBalance.Text, out initialBalance);
+
+            string amountEuro = txtAmountEuro.Text.Trim();
+            string amountCent = txtAmountCent.Text.Trim();
+            string amountString = amountEuro + amountCent;
+            int amount;
+            int.TryParse(amountString, out amount);
+
+            //int initialBalance;
+            //int.TryParse(txtInitialBalance.Text, out initialBalance);
             int overDraftLimit;
             int.TryParse(txtOverdraftLimit.Text, out overDraftLimit);
             string accountType = "";
@@ -54,14 +61,13 @@ namespace DbsBank
 
             // TRANSACTION INFO //
             string description = "Initial Transaction";
-            int amount = 0;
-            int.TryParse(txtInitialBalance.Text, out amount);
+            
             string type = "Deposit";
 
 
             // Creating three Objects //
             CustomerModel customer = new CustomerModel(firstName, surname, email, phone, address1, address2, city, county);
-            AccountModel account = new AccountModel(accountType, accountNo, sortCode, initialBalance, overDraftLimit);
+            AccountModel account = new AccountModel(accountType, accountNo, sortCode, amount, overDraftLimit);
             TransactionModel transaction = new TransactionModel(amount, type, description);
 
             // Sending to BLL //

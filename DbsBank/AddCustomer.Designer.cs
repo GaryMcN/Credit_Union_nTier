@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.txtOverdraftLimit = new System.Windows.Forms.TextBox();
-            this.txtInitialBalance = new System.Windows.Forms.TextBox();
             this.txtSortCode = new System.Windows.Forms.TextBox();
             this.txtAccountNo = new System.Windows.Forms.TextBox();
             this.rdoSavings = new System.Windows.Forms.RadioButton();
@@ -56,6 +55,10 @@
             this.lblSurname = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.txtAmountCent = new System.Windows.Forms.TextBox();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.txtAmountEuro = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtOverdraftLimit
@@ -65,13 +68,6 @@
             this.txtOverdraftLimit.Size = new System.Drawing.Size(150, 20);
             this.txtOverdraftLimit.TabIndex = 59;
             this.txtOverdraftLimit.Text = "0";
-            // 
-            // txtInitialBalance
-            // 
-            this.txtInitialBalance.Location = new System.Drawing.Point(396, 139);
-            this.txtInitialBalance.Name = "txtInitialBalance";
-            this.txtInitialBalance.Size = new System.Drawing.Size(150, 20);
-            this.txtInitialBalance.TabIndex = 58;
             // 
             // txtSortCode
             // 
@@ -329,11 +325,50 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // txtAmountCent
+            // 
+            this.txtAmountCent.Location = new System.Drawing.Point(515, 139);
+            this.txtAmountCent.Name = "txtAmountCent";
+            this.txtAmountCent.Size = new System.Drawing.Size(32, 20);
+            this.txtAmountCent.TabIndex = 80;
+            this.txtAmountCent.Text = "00";
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl2.Location = new System.Drawing.Point(495, 133);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(18, 26);
+            this.lbl2.TabIndex = 79;
+            this.lbl2.Text = ".";
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1.Location = new System.Drawing.Point(380, 141);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(16, 17);
+            this.lbl1.TabIndex = 78;
+            this.lbl1.Text = "€";
+            // 
+            // txtAmountEuro
+            // 
+            this.txtAmountEuro.Location = new System.Drawing.Point(396, 139);
+            this.txtAmountEuro.Name = "txtAmountEuro";
+            this.txtAmountEuro.Size = new System.Drawing.Size(97, 20);
+            this.txtAmountEuro.TabIndex = 77;
+            // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 347);
+            this.Controls.Add(this.txtAmountCent);
+            this.Controls.Add(this.lbl2);
+            this.Controls.Add(this.lbl1);
+            this.Controls.Add(this.txtAmountEuro);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cboCounty);
             this.Controls.Add(this.txtCity);
@@ -352,7 +387,6 @@
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.txtOverdraftLimit);
-            this.Controls.Add(this.txtInitialBalance);
             this.Controls.Add(this.txtSortCode);
             this.Controls.Add(this.txtAccountNo);
             this.Controls.Add(this.rdoSavings);
@@ -373,7 +407,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtOverdraftLimit;
-        private System.Windows.Forms.TextBox txtInitialBalance;
         private System.Windows.Forms.TextBox txtSortCode;
         private System.Windows.Forms.TextBox txtAccountNo;
         private System.Windows.Forms.RadioButton rdoSavings;
@@ -400,6 +433,10 @@
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox txtAmountCent;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.TextBox txtAmountEuro;
 
     }
 }
