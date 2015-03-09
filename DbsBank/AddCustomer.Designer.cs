@@ -64,6 +64,7 @@
             this.txtOverdraftLimit.Name = "txtOverdraftLimit";
             this.txtOverdraftLimit.Size = new System.Drawing.Size(150, 20);
             this.txtOverdraftLimit.TabIndex = 59;
+            this.txtOverdraftLimit.Text = "0";
             // 
             // txtInitialBalance
             // 
@@ -74,6 +75,7 @@
             // 
             // txtSortCode
             // 
+            this.txtSortCode.Enabled = false;
             this.txtSortCode.Location = new System.Drawing.Point(397, 99);
             this.txtSortCode.Name = "txtSortCode";
             this.txtSortCode.Size = new System.Drawing.Size(150, 20);

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BLL;
 using DataModels;
 using System.IO;
+using System.Configuration;
 
 namespace DbsBank
 {
@@ -83,6 +84,8 @@ namespace DbsBank
 
         private void AddCustomer_Load(object sender, EventArgs e)
         {
+            string sort = ConfigurationManager.AppSettings["SortCode"];
+            txtSortCode.Text += sort;
             // Dropdown Styling (Cannot be typed into) //
             cboCounty.DropDownStyle = ComboBoxStyle.DropDownList;
         }
