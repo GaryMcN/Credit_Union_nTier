@@ -21,7 +21,7 @@ namespace DataModels
             Type = type;
             Description = description;
         }
-        // test if a new constructor could do the job
+
         public TransactionModel(int accountID, int amount, string type, string description)
         {
             AccountID = accountID;
