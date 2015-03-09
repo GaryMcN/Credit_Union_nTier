@@ -14,6 +14,7 @@ namespace DbsBank
     public partial class ProcessTransaction : Form
     {
         bool transfer = false;
+        public int accountID;
 
         public ProcessTransaction()
         {
@@ -63,7 +64,6 @@ namespace DbsBank
                 string amountString = amountEuro + amountCent;
                 int amount;
                 int.TryParse(amountString, out amount);
-     
 
                 // Transaction created //
                 TransactionModel tm = new TransactionModel(amount, type, description);

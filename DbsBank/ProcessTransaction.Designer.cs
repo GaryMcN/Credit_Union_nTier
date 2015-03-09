@@ -269,7 +269,6 @@
         private System.Windows.Forms.TextBox txtAmountCent;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblAccountNumber;
-        private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btnProcessTransaction;
@@ -280,6 +279,7 @@
         private System.Windows.Forms.TextBox txtRecipientSortCode;
         private System.Windows.Forms.TextBox txtRecipientAccNo;
         public System.Windows.Forms.ComboBox cboType;
-        private System.Windows.Forms.TextBox txtName;
+        public System.Windows.Forms.TextBox txtAccountNumber;
+        public System.Windows.Forms.TextBox txtName;
     }
 }

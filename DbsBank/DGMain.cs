@@ -14,6 +14,8 @@ namespace DbsBank
 {
     public partial class DGMain : Form
     {
+        int selectedRow;
+
         public DGMain()
         {
             InitializeComponent();
@@ -74,10 +76,11 @@ namespace DbsBank
         {
             if (dgvMain.SelectedRows.Count == 1)
             {
-            
                 using (ProcessTransaction procTrans = new ProcessTransaction())
                 {
+                    //Textboxes Set To Public//
                     procTrans.SetType(2);
+                    PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
                 }
             }
@@ -103,6 +106,7 @@ namespace DbsBank
                 using (ProcessTransaction procTrans = new ProcessTransaction())
                 {
                     procTrans.SetType(1);
+                    PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
                 }
             }
@@ -128,6 +132,7 @@ namespace DbsBank
                 using (ProcessTransaction procTrans = new ProcessTransaction())
                 {
                     procTrans.SetType(0);
+                    PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
                 }
             }
@@ -143,6 +148,25 @@ namespace DbsBank
             {
                 MessageBox.Show("Error, Please try again");
             }
+        }
+
+        private int GetSelectedCustomerAccount()
+        {
+            int accountID;
+            int columnIndex = 0;
+            int rowIndex;
+
+            rowIndex = (int)dgvMain.SelectedRows[0].Index;
+            accountID = (int)dgvMain.Rows[rowIndex].Cells[columnIndex].Value;
+
+            return accountID;
+        }
+
+        private void PassDetailsFromDgv(ProcessTransaction procTrans)
+        {
+            procTrans.txtName.Text = (dgvMain.SelectedRows[selectedRow].Cells[1].Value + " " + dgvMain.SelectedRows[selectedRow].Cells[2].Value);
+            procTrans.txtAccountNumber.Text = dgvMain.SelectedRows[selectedRow].Cells[6].Value.ToString();
+            procTrans.accountID = (int)dgvMain.SelectedRows[selectedRow].Cells[0].Value;
         }
     }
 }
