@@ -16,5 +16,10 @@ namespace DbsBank
         {
             InitializeComponent();
         }
+
+        private void btnProcessTransfer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

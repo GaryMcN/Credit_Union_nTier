@@ -94,5 +94,55 @@ namespace DbsBank
                 MessageBox.Show("Error, Please try again");
             }
         }
+
+        private void withdrawToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvMain.SelectedRows.Count == 1)
+            {
+
+                using (ProcessTransaction procTrans = new ProcessTransaction())
+                {
+                    procTrans.SetType(1);
+                    procTrans.ShowDialog();
+                }
+            }
+            else if (dgvMain.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select a single account");
+            }
+            else if (dgvMain.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Please select an account");
+            }
+            else
+            {
+                MessageBox.Show("Error, Please try again");
+            }
+        }
+
+        private void transferFunsaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvMain.SelectedRows.Count == 1)
+            {
+
+                using (ProcessTransaction procTrans = new ProcessTransaction())
+                {
+                    procTrans.SetType(0);
+                    procTrans.ShowDialog();
+                }
+            }
+            else if (dgvMain.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select a single account");
+            }
+            else if (dgvMain.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Please select an account");
+            }
+            else
+            {
+                MessageBox.Show("Error, Please try again");
+            }
+        }
     }
 }

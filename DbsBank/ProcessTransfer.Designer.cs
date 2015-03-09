@@ -34,19 +34,19 @@
             this.lblDebitSortCode = new System.Windows.Forms.Label();
             this.lblDebitAmount = new System.Windows.Forms.Label();
             this.grpDebit = new System.Windows.Forms.GroupBox();
+            this.txtDebitAmount = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtDebitAccNo = new System.Windows.Forms.TextBox();
+            this.txtDebitSortCode = new System.Windows.Forms.TextBox();
+            this.txtDebitName = new System.Windows.Forms.TextBox();
             this.grpCredit = new System.Windows.Forms.GroupBox();
-            this.btnProcessTransfer = new System.Windows.Forms.Button();
+            this.txtCreditName = new System.Windows.Forms.TextBox();
+            this.lblCreditName = new System.Windows.Forms.Label();
+            this.txtCreditAccNo = new System.Windows.Forms.TextBox();
+            this.txtCreditSortCode = new System.Windows.Forms.TextBox();
             this.lblCreditSortCode = new System.Windows.Forms.Label();
             this.lblCreditAccNo = new System.Windows.Forms.Label();
-            this.txtDebitName = new System.Windows.Forms.TextBox();
-            this.txtDebitSortCode = new System.Windows.Forms.TextBox();
-            this.txtDebitAccNo = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.txtDebitAmount = new System.Windows.Forms.TextBox();
-            this.txtCreditSortCode = new System.Windows.Forms.TextBox();
-            this.txtCreditAccNo = new System.Windows.Forms.TextBox();
-            this.lblCreditName = new System.Windows.Forms.Label();
-            this.txtCreditName = new System.Windows.Forms.TextBox();
+            this.btnProcessTransfer = new System.Windows.Forms.Button();
             this.grpDebit.SuspendLayout();
             this.grpCredit.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +115,41 @@
             this.grpDebit.TabStop = false;
             this.grpDebit.Text = "Debit";
             // 
+            // txtDebitAmount
+            // 
+            this.txtDebitAmount.Location = new System.Drawing.Point(112, 128);
+            this.txtDebitAmount.Name = "txtDebitAmount";
+            this.txtDebitAmount.Size = new System.Drawing.Size(131, 20);
+            this.txtDebitAmount.TabIndex = 9;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(112, 102);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(131, 20);
+            this.txtDescription.TabIndex = 8;
+            // 
+            // txtDebitAccNo
+            // 
+            this.txtDebitAccNo.Location = new System.Drawing.Point(112, 50);
+            this.txtDebitAccNo.Name = "txtDebitAccNo";
+            this.txtDebitAccNo.Size = new System.Drawing.Size(131, 20);
+            this.txtDebitAccNo.TabIndex = 7;
+            // 
+            // txtDebitSortCode
+            // 
+            this.txtDebitSortCode.Location = new System.Drawing.Point(112, 76);
+            this.txtDebitSortCode.Name = "txtDebitSortCode";
+            this.txtDebitSortCode.Size = new System.Drawing.Size(131, 20);
+            this.txtDebitSortCode.TabIndex = 6;
+            // 
+            // txtDebitName
+            // 
+            this.txtDebitName.Location = new System.Drawing.Point(112, 24);
+            this.txtDebitName.Name = "txtDebitName";
+            this.txtDebitName.Size = new System.Drawing.Size(131, 20);
+            this.txtDebitName.TabIndex = 5;
+            // 
             // grpCredit
             // 
             this.grpCredit.Controls.Add(this.txtCreditName);
@@ -130,14 +165,38 @@
             this.grpCredit.TabStop = false;
             this.grpCredit.Text = "Credit";
             // 
-            // btnProcessTransfer
+            // txtCreditName
             // 
-            this.btnProcessTransfer.Location = new System.Drawing.Point(466, 190);
-            this.btnProcessTransfer.Name = "btnProcessTransfer";
-            this.btnProcessTransfer.Size = new System.Drawing.Size(107, 39);
-            this.btnProcessTransfer.TabIndex = 8;
-            this.btnProcessTransfer.Text = "Process Transfer";
-            this.btnProcessTransfer.UseVisualStyleBackColor = true;
+            this.txtCreditName.Enabled = false;
+            this.txtCreditName.Location = new System.Drawing.Point(120, 24);
+            this.txtCreditName.Name = "txtCreditName";
+            this.txtCreditName.Size = new System.Drawing.Size(131, 20);
+            this.txtCreditName.TabIndex = 12;
+            // 
+            // lblCreditName
+            // 
+            this.lblCreditName.AutoSize = true;
+            this.lblCreditName.Location = new System.Drawing.Point(31, 27);
+            this.lblCreditName.Name = "lblCreditName";
+            this.lblCreditName.Size = new System.Drawing.Size(35, 13);
+            this.lblCreditName.TabIndex = 11;
+            this.lblCreditName.Text = "Name";
+            // 
+            // txtCreditAccNo
+            // 
+            this.txtCreditAccNo.Enabled = false;
+            this.txtCreditAccNo.Location = new System.Drawing.Point(120, 76);
+            this.txtCreditAccNo.Name = "txtCreditAccNo";
+            this.txtCreditAccNo.Size = new System.Drawing.Size(131, 20);
+            this.txtCreditAccNo.TabIndex = 10;
+            // 
+            // txtCreditSortCode
+            // 
+            this.txtCreditSortCode.Enabled = false;
+            this.txtCreditSortCode.Location = new System.Drawing.Point(120, 128);
+            this.txtCreditSortCode.Name = "txtCreditSortCode";
+            this.txtCreditSortCode.Size = new System.Drawing.Size(131, 20);
+            this.txtCreditSortCode.TabIndex = 9;
             // 
             // lblCreditSortCode
             // 
@@ -157,70 +216,15 @@
             this.lblCreditAccNo.TabIndex = 7;
             this.lblCreditAccNo.Text = "Account No.";
             // 
-            // txtDebitName
+            // btnProcessTransfer
             // 
-            this.txtDebitName.Location = new System.Drawing.Point(112, 24);
-            this.txtDebitName.Name = "txtDebitName";
-            this.txtDebitName.Size = new System.Drawing.Size(131, 20);
-            this.txtDebitName.TabIndex = 5;
-            // 
-            // txtDebitSortCode
-            // 
-            this.txtDebitSortCode.Location = new System.Drawing.Point(112, 76);
-            this.txtDebitSortCode.Name = "txtDebitSortCode";
-            this.txtDebitSortCode.Size = new System.Drawing.Size(131, 20);
-            this.txtDebitSortCode.TabIndex = 6;
-            // 
-            // txtDebitAccNo
-            // 
-            this.txtDebitAccNo.Location = new System.Drawing.Point(112, 50);
-            this.txtDebitAccNo.Name = "txtDebitAccNo";
-            this.txtDebitAccNo.Size = new System.Drawing.Size(131, 20);
-            this.txtDebitAccNo.TabIndex = 7;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(112, 102);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(131, 20);
-            this.txtDescription.TabIndex = 8;
-            // 
-            // txtDebitAmount
-            // 
-            this.txtDebitAmount.Location = new System.Drawing.Point(112, 128);
-            this.txtDebitAmount.Name = "txtDebitAmount";
-            this.txtDebitAmount.Size = new System.Drawing.Size(131, 20);
-            this.txtDebitAmount.TabIndex = 9;
-            // 
-            // txtCreditSortCode
-            // 
-            this.txtCreditSortCode.Location = new System.Drawing.Point(120, 128);
-            this.txtCreditSortCode.Name = "txtCreditSortCode";
-            this.txtCreditSortCode.Size = new System.Drawing.Size(131, 20);
-            this.txtCreditSortCode.TabIndex = 9;
-            // 
-            // txtCreditAccNo
-            // 
-            this.txtCreditAccNo.Location = new System.Drawing.Point(120, 76);
-            this.txtCreditAccNo.Name = "txtCreditAccNo";
-            this.txtCreditAccNo.Size = new System.Drawing.Size(131, 20);
-            this.txtCreditAccNo.TabIndex = 10;
-            // 
-            // lblCreditName
-            // 
-            this.lblCreditName.AutoSize = true;
-            this.lblCreditName.Location = new System.Drawing.Point(31, 27);
-            this.lblCreditName.Name = "lblCreditName";
-            this.lblCreditName.Size = new System.Drawing.Size(35, 13);
-            this.lblCreditName.TabIndex = 11;
-            this.lblCreditName.Text = "Name";
-            // 
-            // txtCreditName
-            // 
-            this.txtCreditName.Location = new System.Drawing.Point(120, 24);
-            this.txtCreditName.Name = "txtCreditName";
-            this.txtCreditName.Size = new System.Drawing.Size(131, 20);
-            this.txtCreditName.TabIndex = 12;
+            this.btnProcessTransfer.Location = new System.Drawing.Point(466, 190);
+            this.btnProcessTransfer.Name = "btnProcessTransfer";
+            this.btnProcessTransfer.Size = new System.Drawing.Size(107, 39);
+            this.btnProcessTransfer.TabIndex = 8;
+            this.btnProcessTransfer.Text = "Process Transfer";
+            this.btnProcessTransfer.UseVisualStyleBackColor = true;
+            this.btnProcessTransfer.Click += new System.EventHandler(this.btnProcessTransfer_Click);
             // 
             // ProcessTransfer
             // 
