@@ -75,6 +75,9 @@ namespace DbsBank
             bllMngr.CreateCustomerAccount(customer, account, transaction);
 
             MessageBox.Show("Customer Account Added");
+
+            DGMain DataGridView = new DGMain();
+            DataGridView.PrimeMainGrid();
         }
 
         private void rdoSavings_CheckedChanged(object sender, EventArgs e)

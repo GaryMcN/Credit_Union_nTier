@@ -21,7 +21,7 @@ namespace DbsBank
             InitializeComponent();
         }
 
-        private void PrimeMainGrid()
+        public void PrimeMainGrid()
         {
             BLLMngr bllManager = new BLLMngr();
             DataSet ds = bllManager.GetCustomerAccounts();
