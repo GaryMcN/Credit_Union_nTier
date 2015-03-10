@@ -17,6 +17,7 @@ namespace DbsBank
     {
         public int accountID;
         public int balance;
+        public int overdraftLimit;
 
         public ProcessTransaction()
         {
@@ -53,7 +54,6 @@ namespace DbsBank
         {            
             if(cboType.SelectedIndex == 2 || cboType.SelectedIndex == 1)
             {
-                // Do the withdrawal/deposit
                 // TRANSACTION DETAILS //
                 string type = cboType.Text;
                 string description = txtDescription.Text;
@@ -73,11 +73,25 @@ namespace DbsBank
 
                 // BLL instanciated //
                 BLLMngr bllMngr = new BLLMngr();
-                bllMngr.CreateTransaction(transaction);
+                
+                if (bllMngr.ValidateWithdrawal(balance, overdraftLimit, amount))
+                {
+                    bllMngr.CreateTransaction(transaction);
+                }
+                else
+                {
+                    MessageBox.Show("Insifficient Funds");
+                }
+
                 // invoke update balance method //
                 bllMngr.UpdateAccountBalance(account);
-
                 MessageBox.Show("Transfer Complete");
+                
+                this.Close();
+
+                DGMain dgMain = new DGMain();
+                dgMain.ShowDialog();
+                
             }
             else if(cboType.SelectedIndex == 0)
             {

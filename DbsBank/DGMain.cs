@@ -79,13 +79,15 @@ namespace DbsBank
         {
             if (dgvMain.SelectedRows.Count == 1)
             {
-                using (ProcessTransaction procTrans = new ProcessTransaction())
-                {
+                /*using (*/
+                ProcessTransaction procTrans = new ProcessTransaction();
+               // {
+                    this.Hide();
                     //Textboxes Set To Public//
                     procTrans.SetType(2);
                     PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
-                }
+                //}
             }
             else if (dgvMain.SelectedRows.Count > 1)
             {
@@ -171,6 +173,7 @@ namespace DbsBank
             procTrans.txtAccountNumber.Text = dgvMain.SelectedRows[selectedRow].Cells[6].Value.ToString();
             procTrans.accountID = (int)dgvMain.SelectedRows[selectedRow].Cells[0].Value;
             procTrans.balance = (int)dgvMain.SelectedRows[selectedRow].Cells[8].Value;
+            procTrans.overdraftLimit = (int)dgvMain.SelectedRows[selectedRow].Cells[9].Value;
         }
     }
 }

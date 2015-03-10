@@ -19,11 +19,13 @@ namespace BLL
             DALMngr dalMngr = new DALMngr();
             dalMngr.CreateCustomerAccount(newCustomer, newAccount, newTransaction);
         }
+
         public void CreateTransaction(TransactionModel newTransaction)
         {
             DALMngr dalMngr = new DALMngr();
             dalMngr.CreateTransaction(newTransaction);
         }
+
         public DataSet GetCustomerAccounts()
         {
             DataSet ds = null;
@@ -38,10 +40,27 @@ namespace BLL
             }
             return ds;
         }
+
         public void UpdateAccountBalance(AccountModel accountToUpdate)
         {
             DALMngr dalMngr = new DALMngr();
             dalMngr.UpdateAccountBalance(accountToUpdate);
+        }
+
+        public bool ValidateWithdrawal(int balance, int overdraftLimit, int withdrawAmount)
+        {
+            bool isValid;
+            int availableFunds = balance + overdraftLimit;
+
+            if(availableFunds >= withdrawAmount)
+            {
+                isValid = true;
+            }
+            else
+            {
+                isValid = false;
+            }
+            return isValid;
         }
     }
 }
