@@ -38,5 +38,10 @@ namespace BLL
             }
             return ds;
         }
+        public void UpdateAccountBalance(AccountModel accountToUpdate)
+        {
+            DALMngr dalMngr = new DALMngr();
+            dalMngr.UpdateAccountBalance(accountToUpdate);
+        }
     }
 }

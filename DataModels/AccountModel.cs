@@ -28,6 +28,11 @@ namespace DataModels
             Balance = balance;
             OverdraftLimit = overdraftLimit;
         }
-                            
+
+        public AccountModel(int accountID, int balance)
+        {
+            AccountID = accountID;
+            Balance = balance;
+        }      
     }
 }

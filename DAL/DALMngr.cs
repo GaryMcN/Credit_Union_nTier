@@ -190,5 +190,27 @@ namespace DAL
             return ds;
         }
 
+        public void UpdateAccountBalance(AccountModel accountToUpdate)
+        {
+            using (SqlConnection cxn = new SqlConnection(cxnString))
+            {
+                SqlCommand cmdBalanceUpdate = new SqlCommand("spUpdateBalance", cxn);
+                cmdBalanceUpdate.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter accountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                accountIDParam.Value = accountToUpdate.AccountID;
+
+                SqlParameter accountBalanceParam = new SqlParameter("@Balance", SqlDbType.Int);
+                accountBalanceParam.Value = accountToUpdate.Balance;
+
+                cmdBalanceUpdate.Parameters.Add(accountIDParam);
+                cmdBalanceUpdate.Parameters.Add(accountBalanceParam);
+
+                cxn.Open();
+                cmdBalanceUpdate.ExecuteNonQuery();
+                cxn.Close();
+            }
+        }
+
     }
 }
