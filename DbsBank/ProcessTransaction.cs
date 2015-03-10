@@ -86,5 +86,17 @@ namespace DbsBank
         {
             cboType.SelectedIndex = val;
         }
+
+        //public int CurrentBalance(int balance, int amount)
+        //{
+        //    if (cboType.SelectedIndex == 2)
+        //    {
+        //        return balance + amount;
+        //    }
+        //    else (cboType.SelectedIndex == 1)
+        //    {
+        //        return balance - amount;
+        //    }
+        //}
     }
 }
