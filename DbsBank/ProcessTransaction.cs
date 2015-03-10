@@ -62,6 +62,11 @@ namespace DbsBank
                 string amountString = amountEuro + amountCent;
                 int amount;
                 int.TryParse(amountString, out amount);
+                //method used to update the balance in users account
+                int currentBalance = CurrentBalance(balance, amount);
+
+                // Account obj created to update the balance //
+                AccountModel account = new AccountModel(accountID, currentBalance);
 
                 // Transaction obj created //
                 TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
@@ -69,6 +74,8 @@ namespace DbsBank
                 // BLL instanciated //
                 BLLMngr bllMngr = new BLLMngr();
                 bllMngr.CreateTransaction(transaction);
+                // invoke update balance method //
+                bllMngr.UpdateAccountBalance(account);
 
                 MessageBox.Show("Transfer Complete");
             }
@@ -87,16 +94,17 @@ namespace DbsBank
             cboType.SelectedIndex = val;
         }
 
-        //public int CurrentBalance(int balance, int amount)
-        //{
-        //    if (cboType.SelectedIndex == 2)
-        //    {
-        //        return balance + amount;
-        //    }
-        //    else (cboType.SelectedIndex == 1)
-        //    {
-        //        return balance - amount;
-        //    }
-        //}
+        // method only used in withdraw or deposite for updating the account balance of a customer
+        public int CurrentBalance(int balance, int amount)
+        {
+            if (cboType.SelectedIndex == 2)
+            {
+                return (balance + amount);
+            }
+            else
+            {
+                return (balance - amount);
+            }
+        }
     }
 }
