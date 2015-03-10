@@ -166,7 +166,8 @@ namespace DbsBank
         {
             procTrans.txtName.Text = (dgvMain.SelectedRows[selectedRow].Cells[1].Value + " " + dgvMain.SelectedRows[selectedRow].Cells[2].Value);
             procTrans.txtAccountNumber.Text = dgvMain.SelectedRows[selectedRow].Cells[6].Value.ToString();
-            procTrans.accountID = (int)dgvMain.SelectedRows[selectedRow].Cells[0].Value;
+            procTrans.AccountID = (int)dgvMain.SelectedRows[selectedRow].Cells[0].Value;
+            procTrans.Balance = (int)dgvMain.SelectedRows[selectedRow].Cells[8].Value;
         }
     }
 }

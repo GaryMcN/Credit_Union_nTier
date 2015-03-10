@@ -16,6 +16,7 @@ namespace DbsBank
     public partial class ProcessTransaction : Form
     {
         public int accountID;
+        public int balance;
 
         public ProcessTransaction()
         {
