@@ -21,6 +21,14 @@ namespace DbsBank
             InitializeComponent();
         }
 
+        private void AddCustomer_Load(object sender, EventArgs e)
+        {
+            string sort = ConfigurationManager.AppSettings["SortCode"];
+            txtSortCode.Text += sort;
+            // Dropdown Styling (Cannot be typed into) //
+            cboCounty.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // CUSTOMER INFO //
@@ -76,8 +84,13 @@ namespace DbsBank
 
             MessageBox.Show("Customer Account Added");
 
-            DGMain DataGridView = new DGMain();
-            DataGridView.PrimeMainGrid();
+            this.Hide();
+            
+
+            using(DGMain dgMain = new DGMain())
+            {
+                dgMain.ShowDialog();
+            }
         }
 
         private void rdoSavings_CheckedChanged(object sender, EventArgs e)
@@ -91,12 +104,16 @@ namespace DbsBank
             txtOverdraftLimit.Enabled = true;
         }
 
-        private void AddCustomer_Load(object sender, EventArgs e)
+        
+
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            string sort = ConfigurationManager.AppSettings["SortCode"];
-            txtSortCode.Text += sort;
-            // Dropdown Styling (Cannot be typed into) //
-            cboCounty.DropDownStyle = ComboBoxStyle.DropDownList;
+            using (DGMain dgMain = new DGMain())
+            {
+                this.Hide();
+                dgMain.ShowDialog();
+            }
+            
         }
     }
 }

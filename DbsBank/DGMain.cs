@@ -25,6 +25,8 @@ namespace DbsBank
         {
             BLLMngr bllManager = new BLLMngr();
             DataSet ds = bllManager.GetCustomerAccounts();
+            //clearing then populating data source//
+            dgvMain.DataSource = null;
             dgvMain.DataSource = ds.Tables[0];
         }
 
@@ -55,6 +57,7 @@ namespace DbsBank
         {
             using(AddCustomer AddCust = new AddCustomer())
             {
+                this.Hide();
                 AddCust.ShowDialog();
             }
         }

@@ -59,6 +59,7 @@
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.txtAmountEuro = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtOverdraftLimit
@@ -317,7 +318,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(445, 286);
+            this.btnAdd.Location = new System.Drawing.Point(321, 286);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 40);
             this.btnAdd.TabIndex = 76;
@@ -360,11 +361,22 @@
             this.txtAmountEuro.Size = new System.Drawing.Size(97, 20);
             this.txtAmountEuro.TabIndex = 77;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(437, 286);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 40);
+            this.btnCancel.TabIndex = 81;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 347);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtAmountCent);
             this.Controls.Add(this.lbl2);
             this.Controls.Add(this.lbl1);
@@ -437,6 +449,7 @@
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.TextBox txtAmountEuro;
+        private System.Windows.Forms.Button btnCancel;
 
     }
 }

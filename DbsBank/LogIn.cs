@@ -26,6 +26,7 @@ namespace DbsBank
         {
             using (DGMain dgm = new DGMain())
             {
+                this.Hide();
                 //Auto Login just for testing purposes
                 dgm.ShowDialog();
             }
