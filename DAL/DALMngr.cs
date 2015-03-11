@@ -311,10 +311,10 @@ namespace DAL
                 SqlParameter phoneParam = new SqlParameter("@Phone", SqlDbType.NVarChar, 50);
                 phoneParam.Value = existingCustomer.Phone;
 
-                SqlParameter add1Param = new SqlParameter("@Address1", SqlDbType.NVarChar, 50); 
+                SqlParameter add1Param = new SqlParameter("@Address1", SqlDbType.NVarChar, 50);
                 add1Param.Value = existingCustomer.Address1;
 
-                SqlParameter add2Param = new SqlParameter("@Address2", SqlDbType.NVarChar, 50); 
+                SqlParameter add2Param = new SqlParameter("@Address2", SqlDbType.NVarChar, 50);
                 add2Param.Value = existingCustomer.Address2;
 
                 SqlParameter cityParam = new SqlParameter("@City", SqlDbType.NVarChar, 50);

@@ -26,35 +26,35 @@ namespace DbsBank
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string pass;
-            string user;
-            string passHash;
-            bool isValid;
+            //string pass;
+            //string user;
+            //string passHash;
+            //bool isValid;
 
-            pass = txtPassword.Text;
-            user = txtUser.Text;
+            //pass = txtPassword.Text;
+            //user = txtUser.Text;
 
-            BLLMngr bllMngr = new BLLMngr();
-            passHash = bllMngr.PassEncrypt(pass);
+            //BLLMngr bllMngr = new BLLMngr();
+            //passHash = bllMngr.PassEncrypt(pass);
 
-            UserModel userDetails = new UserModel(user, passHash);
+            //UserModel userDetails = new UserModel(user, passHash);
             
-            isValid = bllMngr.IsValidLogin(userDetails);
+            //isValid = bllMngr.IsValidLogin(userDetails);
 
-            if (isValid)
-            {
-                MessageBox.Show("Valid Login");
+            //if (isValid)
+            //{
+            //    MessageBox.Show("Valid Login");
                 using(DGMain dgm = new DGMain())
                 {
                     this.Hide();
                     dgm.ShowDialog();
                 }
                 this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Login");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Invalid Login");
+            //}
         }
     }
 }
