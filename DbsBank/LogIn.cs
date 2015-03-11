@@ -44,6 +44,12 @@ namespace DbsBank
             if (isValid)
             {
                 MessageBox.Show("Valid Login");
+                using(DGMain dgm = new DGMain())
+                {
+                    this.Hide();
+                    dgm.ShowDialog();
+                }
+                this.Show();
             }
             else
             {
