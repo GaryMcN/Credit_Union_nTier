@@ -64,5 +64,10 @@ namespace DbsBank
 
             // STILL NEEED TO DO RDO BTN //
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

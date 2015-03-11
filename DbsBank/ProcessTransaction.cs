@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using BLL;
+using System.Text.RegularExpressions;
 
 namespace DbsBank
 {
@@ -18,6 +19,8 @@ namespace DbsBank
         public int accountID;
         public int balance;
         public int overdraftLimit;
+        string centRegEx = ConfigurationManager.AppSettings["Cent"];
+        
 
         public ProcessTransaction()
         {
@@ -29,8 +32,8 @@ namespace DbsBank
             string sort = ConfigurationManager.AppSettings["SortCode"];
             txtSortCode.Text += sort;
             // THIS APPENDS INSTEAD OF VALIDATING //
-            string cent = ConfigurationManager.AppSettings["Cent"];
-            txtAmountCent.Text += cent;
+            //string centRegEx = ConfigurationManager.AppSettings["Cent"];
+            //txtAmountCent.Text += cent;
             cboType.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -51,47 +54,55 @@ namespace DbsBank
         }
 
         private void btnProcessTransaction_Click(object sender, EventArgs e)
-        {            
-            if(cboType.SelectedIndex == 2 || cboType.SelectedIndex == 1)
+        {
+            // TRANSACTION DETAILS //
+            string type = cboType.Text;
+            string description = txtDescription.Text;
+            string amountEuro = txtAmountEuro.Text.Trim();
+            string amountCent = "00";
+
+            if(Regex.IsMatch(txtAmountCent.Text, centRegEx))
             {
-                // TRANSACTION DETAILS //
-                string type = cboType.Text;
-                string description = txtDescription.Text;
-                string amountEuro = txtAmountEuro.Text.Trim();
-                string amountCent = txtAmountCent.Text.Trim();
-                string amountString = amountEuro + amountCent;
-                int amount;
-                int.TryParse(amountString, out amount);
-                //method used to update the balance in users account
-                int currentBalance = CurrentBalance(balance, amount);
+                amountCent = txtAmountCent.Text;
+            }
+            else
+            {
+                MessageBox.Show("Invalid cent amount: Cents set to zero");
+            }
 
-                // Account obj created to update the balance //
-                AccountModel account = new AccountModel(accountID, currentBalance);
+            string amountString = amountEuro + amountCent;
+            int amount;
+            int.TryParse(amountString, out amount);
+            //method used to update the balance in users account
+            int currentBalance = CurrentBalance(balance, amount);
 
-                // Transaction obj created //
-                TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
+            // Account obj created to update the balance //
+            AccountModel account = new AccountModel(accountID, currentBalance);
 
-                // BLL instanciated //
-                BLLMngr bllMngr = new BLLMngr();
-                
+            // Transaction obj created //
+            TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
+
+            // BLL instanciated //
+            BLLMngr bllMngr = new BLLMngr();
+
+            if(cboType.SelectedIndex == 2)
+            {
+                bllMngr.CreateTransaction(transaction);
+                bllMngr.UpdateAccountBalance(account);
+                MessageBox.Show("Deposit Complete");
+            }
+            else if(cboType.SelectedIndex == 1)
+            {
                 if (bllMngr.ValidateWithdrawal(balance, overdraftLimit, amount))
                 {
                     bllMngr.CreateTransaction(transaction);
+                    bllMngr.UpdateAccountBalance(account);
+                    MessageBox.Show("Withdrawal Complete");
                 }
                 else
                 {
                     MessageBox.Show("Insifficient Funds");
                 }
-
-                // invoke update balance method //
-                bllMngr.UpdateAccountBalance(account);
-                MessageBox.Show("Transfer Complete");
-                
-                this.Close();
-
-                DGMain dgMain = new DGMain();
-                dgMain.ShowDialog();
-                
             }
             else if(cboType.SelectedIndex == 0)
             {
@@ -101,6 +112,8 @@ namespace DbsBank
                     procTransfer.ShowDialog();
                 }
             }
+
+            this.Close();
         }
 
         public void SetType(int val)

@@ -84,13 +84,7 @@ namespace DbsBank
 
             MessageBox.Show("Customer Account Added");
 
-            this.Hide();
-            
-
-            using(DGMain dgMain = new DGMain())
-            {
-                dgMain.ShowDialog();
-            }
+            this.Close();
         }
 
         private void rdoSavings_CheckedChanged(object sender, EventArgs e)
