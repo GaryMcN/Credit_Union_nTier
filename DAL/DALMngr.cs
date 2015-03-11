@@ -244,5 +244,45 @@ namespace DAL
             }
         }
 
+        public bool IsValidLogin(UserModel userDetails)
+        {
+            bool isValid;
+            try
+            {
+                using (SqlConnection cxn = new SqlConnection(cxnString))
+                {
+                    SqlCommand cmd = new SqlCommand("spValidateUser", cxn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter userNameParam = new SqlParameter("@UserName", SqlDbType.NVarChar, 50);
+                    userNameParam.Value = userDetails.UserName;
+
+                    SqlParameter passwordParam = new SqlParameter("@usrPassword", SqlDbType.NVarChar, 50);
+                    passwordParam.Value = userDetails.Password;
+
+                    cmd.Parameters.Add(userNameParam);
+                    cmd.Parameters.Add(passwordParam);
+                    cxn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    
+
+                    if(dr.Read())
+                    {
+                        isValid = true;
+                    }
+                    else
+                    {
+                        isValid = false;
+                    }
+                    dr.Close();
+                    cxn.Close();
+                }
+                return isValid;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

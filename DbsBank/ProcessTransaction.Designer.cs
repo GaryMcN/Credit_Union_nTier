@@ -228,6 +228,7 @@
             this.txtAmountCent.Size = new System.Drawing.Size(32, 20);
             this.txtAmountCent.TabIndex = 6;
             this.txtAmountCent.Text = "00";
+            this.txtAmountCent.Leave += new System.EventHandler(this.txtAmountCent_Leave);
             // 
             // ProcessTransaction
             // 

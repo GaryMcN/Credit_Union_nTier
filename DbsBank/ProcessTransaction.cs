@@ -19,6 +19,7 @@ namespace DbsBank
         public int accountID;
         public int balance;
         public int overdraftLimit;
+        string amountCent = "00";
         string centRegEx = ConfigurationManager.AppSettings["Cent"];
         
 
@@ -59,16 +60,6 @@ namespace DbsBank
             string type = cboType.Text;
             string description = txtDescription.Text;
             string amountEuro = txtAmountEuro.Text.Trim();
-            string amountCent = "00";
-
-            if(Regex.IsMatch(txtAmountCent.Text, centRegEx))
-            {
-                amountCent = txtAmountCent.Text;
-            }
-            else
-            {
-                MessageBox.Show("Invalid cent amount: Cents set to zero");
-            }
 
             string amountString = amountEuro + amountCent;
             int amount;
@@ -131,6 +122,19 @@ namespace DbsBank
             else
             {
                 return (balance - amount);
+            }
+        }
+
+        private void txtAmountCent_Leave(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(txtAmountCent.Text, centRegEx))
+            {
+                amountCent = txtAmountCent.Text;
+            }
+            else
+            {
+                MessageBox.Show("Invalid cent amount: Cents set to zero");
+                txtAmountCent.Focus();
             }
         }
     }

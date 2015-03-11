@@ -7,6 +7,7 @@ using DAL;
 using System.Data;
 using DataModels;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace BLL
 {
@@ -76,6 +77,36 @@ namespace BLL
                 throw ex;
             }
             return dt;
+        }
+
+        public bool IsValidLogin(UserModel userDetails)
+        {
+            bool isValid;
+            bool valid;
+            DALMngr dalMngr = new DALMngr();
+            valid = dalMngr.IsValidLogin(userDetails);
+            if(valid)
+            {
+                isValid = true;
+            }
+            else
+            {
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        public string PassEncrypt(string passWord)
+        {
+            SHA1 sha = SHA1.Create();
+            byte[] hashdata = sha.ComputeHash(Encoding.Default.GetBytes(passWord));
+            StringBuilder encryptedPassword = new StringBuilder();
+
+            for (int i = 0; i < hashdata.Length; i++)
+            {
+                encryptedPassword.Append(hashdata[i].ToString());
+            }
+            return encryptedPassword.ToString();
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using DataModels;
 
 namespace DbsBank
 {
@@ -24,13 +26,30 @@ namespace DbsBank
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            using (DGMain dgm = new DGMain())
+            string pass;
+            string user;
+            string passHash;
+            bool isValid;
+
+            pass = txtPassword.Text;
+            user = txtUser.Text;
+
+            BLLMngr bllMngr = new BLLMngr();
+            passHash = bllMngr.PassEncrypt(pass);
+
+            UserModel userDetails = new UserModel(user, passHash);
+            
+            isValid = bllMngr.IsValidLogin(userDetails);
+
+            if (isValid)
             {
-                this.Hide();
-                //Auto Login just for testing purposes
-                dgm.ShowDialog();
+                MessageBox.Show("Valid Login");
             }
-            this.Show();
+            else
+            {
+                MessageBox.Show("Invalid Login");
+            }
+            
         }
     }
 }

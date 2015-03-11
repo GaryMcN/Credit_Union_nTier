@@ -14,7 +14,7 @@ namespace DbsBank
 {
     public partial class DGMain : Form
     {
-        int selectedRow;
+        int selectedRow = 0;
 
         public DGMain()
         {
