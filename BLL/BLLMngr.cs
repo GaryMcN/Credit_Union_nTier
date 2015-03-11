@@ -77,5 +77,10 @@ namespace BLL
             }
             return dt;
         }
+        public void UpdateCustomersAccount(CustomerModel customer, AccountModel account)
+        {
+            DALMngr dalMngr = new DALMngr();
+            dalMngr.UpdateCustomersAccount(customer, account);
+        }
     }
 }

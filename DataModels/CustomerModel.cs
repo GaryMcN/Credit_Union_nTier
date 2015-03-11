@@ -36,5 +36,25 @@ namespace DataModels
             City = city;
             County = county;
         }
+        public CustomerModel(int customerID,
+                             string firstName,
+                             string surname,
+                             string email,
+                             string phone,
+                             string address1,
+                             string address2,
+                             string city,
+                             string county)
+        {
+            CustomerID = customerID;
+            FirstName = firstName;
+            Surname = surname;
+            Email = email;
+            Phone = phone;
+            Address1 = address1;
+            Address2 = address2;
+            City = city;
+            County = county;
+        }
     }
 }

@@ -28,6 +28,20 @@ namespace DataModels
             Balance = balance;
             OverdraftLimit = overdraftLimit;
         }
+        public AccountModel(int accountID,
+                            string accountType,
+                            int accountNumber,
+                            int sortCode,
+                            int balance,
+                            int overdraftLimit)
+        {
+            AccountID = accountID;
+            AccountType = accountType;
+            AccountNumber = accountNumber;
+            SortCode = sortCode;
+            Balance = balance;
+            OverdraftLimit = overdraftLimit;
+        }
 
         public AccountModel(int accountID, int balance)
         {
