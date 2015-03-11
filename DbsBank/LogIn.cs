@@ -55,7 +55,6 @@ namespace DbsBank
             {
                 MessageBox.Show("Invalid Login");
             }
-            
         }
     }
 }
