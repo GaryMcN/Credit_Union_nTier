@@ -73,7 +73,6 @@ namespace DbsBank
             {
                 if (dgvMain.SelectedRows.Count == 1)
                 {
-                    // START HERE TOMORROW //
                     BLLMngr bll = new BLLMngr();
                     DataTable CustomerDetails = bll.GetFullAccountDetails((int)dgvMain.SelectedRows[selectedRow].Cells[0].Value);
 
@@ -95,12 +94,16 @@ namespace DbsBank
                         EditCust.SortCode = row["SortCode"].ToString();
                         EditCust.InitialBalance = row["Balance"].ToString();
                         EditCust.OverdraftLimit = row["OverdraftLimit"].ToString();
+                        EditCust.AccountID = row["AccountID"].ToString();
+                        EditCust.CustomerID = row["CustomerID"].ToString();
                     }
-                    
 
+                    this.Hide();
                     EditCust.ShowDialog();
                 }
             }
+            this.Show();
+            PrimeMainGrid();
         }
 
         private void DGMain_Load(object sender, EventArgs e)

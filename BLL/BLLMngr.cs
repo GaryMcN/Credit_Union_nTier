@@ -79,6 +79,7 @@ namespace BLL
             return dt;
         }
 
+
         public bool IsValidLogin(UserModel userDetails)
         {
             bool isValid;
@@ -107,6 +108,13 @@ namespace BLL
                 encryptedPassword.Append(hashdata[i].ToString());
             }
             return encryptedPassword.ToString();
+        }
+
+        public void UpdateCustomersAccount(CustomerModel customer, AccountModel account)
+        {
+            DALMngr dalMngr = new DALMngr();
+            dalMngr.UpdateCustomersAccount(customer, account);
+
         }
     }
 }

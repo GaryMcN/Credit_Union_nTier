@@ -244,6 +244,7 @@ namespace DAL
             }
         }
 
+
         public bool IsValidLogin(UserModel userDetails)
         {
             bool isValid;
@@ -282,6 +283,104 @@ namespace DAL
             catch(Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void UpdateCustomersAccount(CustomerModel customer, AccountModel account)
+        {
+            UpdateCutomer(customer);
+            UpdateAccount(account);
+        }
+
+        private void UpdateCutomer(CustomerModel existingCustomer)
+        {
+            using (SqlConnection cxn = new SqlConnection(cxnString))
+            {
+                SqlCommand cmdCustomer = new SqlCommand("spUpdateCustomer", cxn);
+                cmdCustomer.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter firstNameParam = new SqlParameter("@FirstName", SqlDbType.NVarChar, 50);
+                firstNameParam.Value = existingCustomer.FirstName;
+
+                SqlParameter surnameParam = new SqlParameter("@Surname", SqlDbType.NVarChar, 50);
+                surnameParam.Value = existingCustomer.Surname;
+
+                SqlParameter emailParam = new SqlParameter("@Email", SqlDbType.NVarChar, 50);
+                emailParam.Value = existingCustomer.Email;
+
+                SqlParameter phoneParam = new SqlParameter("@Phone", SqlDbType.NVarChar, 50);
+                phoneParam.Value = existingCustomer.Phone;
+
+                SqlParameter add1Param = new SqlParameter("@Address1", SqlDbType.NVarChar, 50); 
+                add1Param.Value = existingCustomer.Address1;
+
+                SqlParameter add2Param = new SqlParameter("@Address2", SqlDbType.NVarChar, 50); 
+                add2Param.Value = existingCustomer.Address2;
+
+                SqlParameter cityParam = new SqlParameter("@City", SqlDbType.NVarChar, 50);
+                cityParam.Value = existingCustomer.City;
+
+                SqlParameter countyParam = new SqlParameter("@County", SqlDbType.NVarChar, 50);
+                countyParam.Value = existingCustomer.County;
+
+                SqlParameter custIDParam = new SqlParameter("@CustomerID", SqlDbType.Int);
+                custIDParam.Value = existingCustomer.CustomerID;
+
+                cmdCustomer.Parameters.Add(firstNameParam);
+                cmdCustomer.Parameters.Add(surnameParam);
+                cmdCustomer.Parameters.Add(emailParam);
+                cmdCustomer.Parameters.Add(phoneParam);
+                cmdCustomer.Parameters.Add(add1Param);
+                cmdCustomer.Parameters.Add(add2Param);
+                cmdCustomer.Parameters.Add(cityParam);
+                cmdCustomer.Parameters.Add(countyParam);
+                cmdCustomer.Parameters.Add(custIDParam);
+
+                cxn.Open();
+                cmdCustomer.ExecuteNonQuery();
+                cxn.Close();
+            }
+        }
+
+        private void UpdateAccount(AccountModel existingAccount)
+        {
+            using (SqlConnection cxn = new SqlConnection(cxnString))
+            {
+
+                SqlCommand cmdAccount = new SqlCommand("spUpdateAccount", cxn);
+                cmdAccount.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter CustIDParam = new SqlParameter("@CustomerID", SqlDbType.Int);
+                CustIDParam.Value = existingAccount.CustomerID;
+
+                SqlParameter AccTypeParam = new SqlParameter("@AccountType", SqlDbType.NVarChar, 50);
+                AccTypeParam.Value = existingAccount.AccountType;
+
+                SqlParameter AccNumberParam = new SqlParameter("@AccountNumber", SqlDbType.Int);
+                AccNumberParam.Value = existingAccount.AccountNumber;
+
+                SqlParameter SortCodeParam = new SqlParameter("@SortCode", SqlDbType.Int);
+                SortCodeParam.Value = existingAccount.SortCode;
+
+                SqlParameter BalParam = new SqlParameter("@Balance", SqlDbType.Int);
+                BalParam.Value = existingAccount.Balance;
+
+                SqlParameter OverDraftParam = new SqlParameter("@OverdraftLimit", SqlDbType.Int);
+                OverDraftParam.Value = existingAccount.OverdraftLimit;
+
+                SqlParameter AccIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                AccIDParam.Value = existingAccount.AccountID;
+
+                cmdAccount.Parameters.Add(AccTypeParam);
+                cmdAccount.Parameters.Add(AccNumberParam);
+                cmdAccount.Parameters.Add(SortCodeParam);
+                cmdAccount.Parameters.Add(BalParam);
+                cmdAccount.Parameters.Add(OverDraftParam);
+                cmdAccount.Parameters.Add(AccIDParam);
+
+                cxn.Open();
+                cmdAccount.ExecuteNonQuery();
+                cxn.Close();
             }
         }
     }

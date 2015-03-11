@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataModels;
+using BLL;
 
 namespace DbsBank
 {
@@ -26,6 +28,8 @@ namespace DbsBank
         public string SortCode { get; set; }
         public string InitialBalance { get; set; }
         public string OverdraftLimit { get; set; }
+        public string AccountID { get; set; }
+        public string CustomerID { get; set; }
 
         public bool EditOnly { get; set; }
 
@@ -36,7 +40,44 @@ namespace DbsBank
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            BLLMngr bllMngr = new BLLMngr();
+            int acNum;
+            int.TryParse(AccountNo, out acNum);
+            int sortCode;
+            int.TryParse(SortCode, out sortCode);
+            int initBal;
+            int.TryParse(InitialBalance, out initBal);
+            int oDLim;
+            int.TryParse(OverdraftLimit, out oDLim);
+            int accountID;
+            int.TryParse(AccountID, out accountID);
+            int customerID;
+            int.TryParse(CustomerID, out customerID);
 
+            FirstName = txtFirstName.Text;
+            Surname = txtSurname.Text;
+            Email = txtEmail.Text;
+            Phone = txtPhone.Text;
+            Address1 = txtAddress1.Text;
+            Address2 = txtAddress2.Text;
+            City = txtCity.Text;
+            County = cboCounty.Text;
+
+            if (rdoCurrent.Checked)
+            {
+                AccountType = "Current";
+            }
+            else if (rdoSavings.Checked)
+            {
+                AccountType = "Savings";
+            }
+            AccountModel account = new AccountModel(accountID, AccountType, acNum, sortCode, initBal, oDLim);
+            CustomerModel customer = new CustomerModel(customerID, FirstName, Surname, Email, Phone, Address1, Address2, City, County);
+
+            bllMngr.UpdateCustomersAccount(customer, account);
+            MessageBox.Show("Customer Updated");
+            
+            this.Close();
         }
 
         private void EditCustomer_Load(object sender, EventArgs e)
@@ -62,7 +103,15 @@ namespace DbsBank
             txtInitialBalance.Text = InitialBalance;
             txtOverdraftLimit.Text = OverdraftLimit;
 
-            // STILL NEEED TO DO RDO BTN //
+            if (AccountType == "Current")
+            {
+                rdoCurrent.Checked = true;
+            }
+            else
+            {
+                rdoSavings.Checked = true;
+            }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
