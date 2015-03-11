@@ -190,6 +190,38 @@ namespace DAL
             return ds;
         }
 
+        public DataTable GetFullCustomerDetails(int accountID)
+        {
+            DataTable dt = null;
+            try
+            {
+                using (SqlConnection cxn = new SqlConnection(cxnString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    dt = new DataTable();
+
+                    SqlCommand cmdGetFullCustomerDetails = new SqlCommand("spGetFullCustomerDetails", cxn);
+                    cmdGetFullCustomerDetails.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter accountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                    accountIDParam.Value = accountID;
+
+                    cmdGetFullCustomerDetails.Parameters.Add(accountIDParam);
+                    
+                    cxn.Open();
+                    cmdGetFullCustomerDetails.ExecuteNonQuery();
+                    da.SelectCommand = cmdGetFullCustomerDetails;
+                    da.Fill(dt);
+                    cxn.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
         public void UpdateAccountBalance(AccountModel accountToUpdate)
         {
             using (SqlConnection cxn = new SqlConnection(cxnString))

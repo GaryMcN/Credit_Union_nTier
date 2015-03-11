@@ -62,5 +62,20 @@ namespace BLL
             }
             return isValid;
         }
+
+        public DataTable GetFullAccountDetails(int accountID)
+        {
+            DataTable dt = null;
+            DALMngr dalManager = new DALMngr();
+            try
+            {
+                dt = dalManager.GetFullCustomerDetails(accountID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
     }
 }

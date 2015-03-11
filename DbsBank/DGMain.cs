@@ -66,7 +66,35 @@ namespace DbsBank
         {
             using (EditCustomer EditCust = new EditCustomer())
             {
-                EditCust.ShowDialog();
+                if (dgvMain.SelectedRows.Count == 1)
+                {
+                    // START HERE TOMORROW //
+                    BLLMngr bll = new BLLMngr();
+                    DataTable CustomerDetails = bll.GetFullAccountDetails((int)dgvMain.SelectedRows[selectedRow].Cells[0].Value);
+
+
+                    //EditCustomer editCust = new EditCustomer();
+
+                    foreach (DataRow row in CustomerDetails.Rows)
+                    {
+                        EditCust.FirstName = row["FirstName"].ToString();
+                        EditCust.Surname = row["Surname"].ToString();
+                        EditCust.Email = row["Email"].ToString();
+                        EditCust.Phone = row["Phone"].ToString();
+                        EditCust.Address1 = row["Address1"].ToString();
+                        EditCust.Address2 = row["Address2"].ToString();
+                        EditCust.City = row["City"].ToString();
+                        EditCust.County = row["County"].ToString();
+                        EditCust.AccountType = row["AccountType"].ToString();
+                        EditCust.AccountNo = row["AccountNumber"].ToString();
+                        EditCust.SortCode = row["SortCode"].ToString();
+                        EditCust.InitialBalance = row["Balance"].ToString();
+                        EditCust.OverdraftLimit = row["OverdraftLimit"].ToString();
+                    }
+                    
+
+                    EditCust.ShowDialog();
+                }
             }
         }
 
