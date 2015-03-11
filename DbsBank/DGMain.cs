@@ -48,9 +48,11 @@ namespace DbsBank
         {
             using(Transactions tr = new Transactions())
             {
+                this.Hide();
                 tr.ShowDialog();
-                this.Close();
             }
+            this.Show();
+            PrimeMainGrid();
         }
 
         private void newAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,6 +62,9 @@ namespace DbsBank
                 this.Hide();
                 AddCust.ShowDialog();
             }
+            //priming the same datagrid//
+            this.Show();
+            PrimeMainGrid();
         }
 
         private void editAccountToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,15 +84,16 @@ namespace DbsBank
         {
             if (dgvMain.SelectedRows.Count == 1)
             {
-                /*using (*/
-                ProcessTransaction procTrans = new ProcessTransaction();
-               // {
+                using (ProcessTransaction procTrans = new ProcessTransaction())
+               {
                     this.Hide();
                     //Textboxes Set To Public//
                     procTrans.SetType(2);
                     PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
-                //}
+                }
+                this.Show();
+                PrimeMainGrid();
             }
             else if (dgvMain.SelectedRows.Count > 1)
             {
@@ -107,13 +113,15 @@ namespace DbsBank
         {
             if (dgvMain.SelectedRows.Count == 1)
             {
-
                 using (ProcessTransaction procTrans = new ProcessTransaction())
                 {
+                    this.Hide();
                     procTrans.SetType(1);
                     PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
                 }
+                this.Show();
+                PrimeMainGrid();
             }
             else if (dgvMain.SelectedRows.Count > 1)
             {
@@ -136,10 +144,13 @@ namespace DbsBank
 
                 using (ProcessTransaction procTrans = new ProcessTransaction())
                 {
+                    this.Hide();
                     procTrans.SetType(0);
                     PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
                 }
+                this.Show();
+                PrimeMainGrid();
             }
             else if (dgvMain.SelectedRows.Count > 1)
             {

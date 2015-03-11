@@ -52,15 +52,16 @@
             this.rdoSavings = new System.Windows.Forms.RadioButton();
             this.rdoCurrent = new System.Windows.Forms.RadioButton();
             this.lvlOverdraftLimit = new System.Windows.Forms.Label();
-            this.lblInitialBalance = new System.Windows.Forms.Label();
+            this.lblBalance = new System.Windows.Forms.Label();
             this.lblSortCode = new System.Windows.Forms.Label();
             this.lblAccountNo = new System.Windows.Forms.Label();
             this.lblAccountType = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(438, 285);
+            this.btnSave.Location = new System.Drawing.Point(322, 285);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 40);
             this.btnSave.TabIndex = 2;
@@ -289,14 +290,14 @@
             this.lvlOverdraftLimit.TabIndex = 80;
             this.lvlOverdraftLimit.Text = "Overdraft Limit";
             // 
-            // lblInitialBalance
+            // lblBalance
             // 
-            this.lblInitialBalance.AutoSize = true;
-            this.lblInitialBalance.Location = new System.Drawing.Point(295, 137);
-            this.lblInitialBalance.Name = "lblInitialBalance";
-            this.lblInitialBalance.Size = new System.Drawing.Size(73, 13);
-            this.lblInitialBalance.TabIndex = 79;
-            this.lblInitialBalance.Text = "Initial Balance";
+            this.lblBalance.AutoSize = true;
+            this.lblBalance.Location = new System.Drawing.Point(295, 137);
+            this.lblBalance.Name = "lblBalance";
+            this.lblBalance.Size = new System.Drawing.Size(46, 13);
+            this.lblBalance.TabIndex = 79;
+            this.lblBalance.Text = "Balance";
             // 
             // lblSortCode
             // 
@@ -325,11 +326,22 @@
             this.lblAccountType.TabIndex = 76;
             this.lblAccountType.Text = "Account Type";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(438, 285);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 40);
+            this.btnCancel.TabIndex = 103;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // EditCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 347);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.cboCounty);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.txtAddress2);
@@ -353,7 +365,7 @@
             this.Controls.Add(this.rdoSavings);
             this.Controls.Add(this.rdoCurrent);
             this.Controls.Add(this.lvlOverdraftLimit);
-            this.Controls.Add(this.lblInitialBalance);
+            this.Controls.Add(this.lblBalance);
             this.Controls.Add(this.lblSortCode);
             this.Controls.Add(this.lblAccountNo);
             this.Controls.Add(this.lblAccountType);
@@ -392,9 +404,10 @@
         private System.Windows.Forms.RadioButton rdoSavings;
         private System.Windows.Forms.RadioButton rdoCurrent;
         private System.Windows.Forms.Label lvlOverdraftLimit;
-        private System.Windows.Forms.Label lblInitialBalance;
+        private System.Windows.Forms.Label lblBalance;
         private System.Windows.Forms.Label lblSortCode;
         private System.Windows.Forms.Label lblAccountNo;
         private System.Windows.Forms.Label lblAccountType;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

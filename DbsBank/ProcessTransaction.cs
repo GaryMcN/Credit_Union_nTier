@@ -114,9 +114,6 @@ namespace DbsBank
             }
 
             this.Close();
-
-            DGMain dgMain = new DGMain();
-            dgMain.ShowDialog();
         }
 
         public void SetType(int val)

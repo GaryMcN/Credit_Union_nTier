@@ -34,5 +34,10 @@ namespace DbsBank
             txtAccountNo.Enabled = false;
             txtSortCode.Enabled = false;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
