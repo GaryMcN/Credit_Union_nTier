@@ -90,6 +90,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Transactions";
             this.Text = "Transactions";
+            this.Load += new System.EventHandler(this.Transactions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactions)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

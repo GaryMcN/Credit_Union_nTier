@@ -48,8 +48,15 @@ namespace DbsBank
         {
             using(Transactions tr = new Transactions())
             {
-                this.Hide();
-                tr.ShowDialog();
+                if(dgvMain.SelectedRows.Count == 1)
+                {
+                    //get cell from dgvmain convert to int//
+                    int id = Convert.ToInt32(dgvMain.Rows[dgvMain.SelectedRows[0].Index].Cells["AccountID"].Value);
+                    //pass that int to transactions table//
+                    tr.GetAccountID(id);
+                    this.Hide();
+                    tr.ShowDialog();
+                }
             }
             this.Show();
             PrimeMainGrid();

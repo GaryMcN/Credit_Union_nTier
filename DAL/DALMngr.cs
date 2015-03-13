@@ -190,6 +190,38 @@ namespace DAL
             return ds;
         }
 
+        public DataSet AuditAccount(int ID)
+        {
+            DataSet ds = null;
+            try
+            {
+                using(SqlConnection cxn = new SqlConnection(cxnString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    ds = new DataSet();
+
+                    SqlCommand cmdAudit = new SqlCommand("spAuditAccount", cxn);
+                    cmdAudit.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter AccountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                    AccountIDParam.Value = ID;
+
+                    cmdAudit.Parameters.Add(AccountIDParam);
+
+                    cxn.Open();
+                    cmdAudit.ExecuteNonQuery();
+                    da.SelectCommand = cmdAudit;
+                    da.Fill(ds);
+                    cxn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return ds;
+        }
+
         public DataTable GetFullCustomerDetails(int accountID)
         {
             DataTable dt = null;
