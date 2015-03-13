@@ -83,9 +83,6 @@ namespace DbsBank
                     BLLMngr bll = new BLLMngr();
                     DataTable CustomerDetails = bll.GetFullAccountDetails((int)dgvMain.SelectedRows[selectedRow].Cells[0].Value);
 
-
-                    //EditCustomer editCust = new EditCustomer();
-
                     foreach (DataRow row in CustomerDetails.Rows)
                     {
                         EditCust.FirstName = row["FirstName"].ToString();

@@ -23,7 +23,6 @@ namespace DbsBank
         {
             using (DGMain dgm = new DGMain())
             {
-                dgm.ShowDialog();
                 this.Close();
             }
         }

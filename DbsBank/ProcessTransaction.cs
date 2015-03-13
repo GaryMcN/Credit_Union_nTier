@@ -92,7 +92,7 @@ namespace DbsBank
                 }
                 else
                 {
-                    MessageBox.Show("Insifficient Funds");
+                    MessageBox.Show("Insufficient Funds");
                 }
             }
             else if(cboType.SelectedIndex == 0)
@@ -133,7 +133,7 @@ namespace DbsBank
             }
             else
             {
-                MessageBox.Show("Invalid cent amount: Cents set to zero");
+                MessageBox.Show("Invalid cent amount");
                 txtAmountCent.Focus();
             }
         }
