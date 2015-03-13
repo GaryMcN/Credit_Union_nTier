@@ -69,6 +69,7 @@
             this.txtOverdraftLimit.Size = new System.Drawing.Size(150, 20);
             this.txtOverdraftLimit.TabIndex = 59;
             this.txtOverdraftLimit.Text = "0";
+            this.txtOverdraftLimit.Leave += new System.EventHandler(this.txtOverdraftLimit_Leave);
             // 
             // txtSortCode
             // 
@@ -84,6 +85,7 @@
             this.txtAccountNo.Name = "txtAccountNo";
             this.txtAccountNo.Size = new System.Drawing.Size(150, 20);
             this.txtAccountNo.TabIndex = 56;
+            this.txtAccountNo.Leave += new System.EventHandler(this.txtAccountNo_Leave);
             // 
             // rdoSavings
             // 
@@ -201,6 +203,7 @@
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(144, 20);
             this.txtCity.TabIndex = 74;
+            this.txtCity.Leave += new System.EventHandler(this.txtCity_Leave);
             // 
             // txtAddress2
             // 
@@ -208,6 +211,7 @@
             this.txtAddress2.Name = "txtAddress2";
             this.txtAddress2.Size = new System.Drawing.Size(144, 20);
             this.txtAddress2.TabIndex = 73;
+            this.txtAddress2.Leave += new System.EventHandler(this.txtAddress2_Leave);
             // 
             // txtAddress1
             // 
@@ -215,6 +219,7 @@
             this.txtAddress1.Name = "txtAddress1";
             this.txtAddress1.Size = new System.Drawing.Size(144, 20);
             this.txtAddress1.TabIndex = 72;
+            this.txtAddress1.Leave += new System.EventHandler(this.txtAddress1_Leave);
             // 
             // txtPhone
             // 
@@ -222,6 +227,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(144, 20);
             this.txtPhone.TabIndex = 71;
+            this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // txtEmail
             // 
@@ -229,6 +235,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(144, 20);
             this.txtEmail.TabIndex = 70;
+            this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // txtSurname
             // 
@@ -236,6 +243,7 @@
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(144, 20);
             this.txtSurname.TabIndex = 69;
+            this.txtSurname.Leave += new System.EventHandler(this.txtSurname_Leave);
             // 
             // txtFirstName
             // 
@@ -243,6 +251,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(144, 20);
             this.txtFirstName.TabIndex = 68;
+            this.txtFirstName.Leave += new System.EventHandler(this.txtFirstName_Leave);
             // 
             // lblCounty
             // 
@@ -333,6 +342,7 @@
             this.txtAmountCent.Size = new System.Drawing.Size(32, 20);
             this.txtAmountCent.TabIndex = 80;
             this.txtAmountCent.Text = "00";
+            this.txtAmountCent.Leave += new System.EventHandler(this.txtAmountCent_Leave);
             // 
             // lbl2
             // 
@@ -360,6 +370,7 @@
             this.txtAmountEuro.Name = "txtAmountEuro";
             this.txtAmountEuro.Size = new System.Drawing.Size(97, 20);
             this.txtAmountEuro.TabIndex = 77;
+            this.txtAmountEuro.Leave += new System.EventHandler(this.txtAmountEuro_Leave);
             // 
             // btnCancel
             // 

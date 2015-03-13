@@ -21,7 +21,6 @@ namespace DbsBank
         public int overdraftLimit;
         string amountCent = "00";
         string centRegEx = ConfigurationManager.AppSettings["Cent"];
-        
 
         public ProcessTransaction()
         {
