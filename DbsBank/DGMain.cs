@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 using DataModels;
+using System.IO;
 
 namespace DbsBank
 {
@@ -29,6 +30,8 @@ namespace DbsBank
             dgvMain.DataSource = null;
             dgvMain.DataSource = ds.Tables[0];
         }
+
+
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -220,6 +223,27 @@ namespace DbsBank
             procTrans.accountID = (int)dgvMain.SelectedRows[selectedRow].Cells[0].Value;
             procTrans.balance = (int)dgvMain.SelectedRows[selectedRow].Cells[8].Value;
             procTrans.overdraftLimit = (int)dgvMain.SelectedRows[selectedRow].Cells[9].Value;
+        }
+
+        
+
+        private void exportToXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvMain.SelectedRows.Count > 0)
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/CustomerXML.xml";
+                int id = Convert.ToInt32(dgvMain.Rows[dgvMain.SelectedRows[0].Index].Cells["AccountID"].Value);
+                BLLMngr bllMngr = new BLLMngr();
+                DataTable dt = bllMngr.GetFullAccountDetails(id);
+                dt.TableName = "CustomerXML";
+                StreamWriter sW = new StreamWriter(path);
+                dt.WriteXml(sW);
+                MessageBox.Show("Customer Serialized");
+            }
+            else
+            {
+                MessageBox.Show("Please Select An Account");
+            }
         }
     }
 }

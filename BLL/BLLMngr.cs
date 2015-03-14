@@ -94,7 +94,6 @@ namespace BLL
             return dt;
         }
 
-
         public bool IsValidLogin(UserModel userDetails)
         {
             bool isValid;
