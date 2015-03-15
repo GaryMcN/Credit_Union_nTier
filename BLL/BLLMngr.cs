@@ -74,6 +74,14 @@ namespace BLL
             return accID;
         }
 
+        public int GetAccountBalance(int accountNumber)
+        {
+            int balance;
+            DALMngr dalMngr = new DALMngr();
+            balance = dalMngr.GetAccountBalance(accountNumber);
+            return balance;
+        }
+
         public void UpdateAccountBalance(AccountModel accountToUpdate)
         {
             DALMngr dalMngr = new DALMngr();
