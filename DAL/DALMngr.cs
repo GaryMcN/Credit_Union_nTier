@@ -14,6 +14,7 @@ namespace DAL
     public class DALMngr
     {
         string cxnString = ConfigurationManager.ConnectionStrings["DbsDB"].ConnectionString;
+        public int TransactionID { get; set; }
 
         public void CreateCustomerAccount(CustomerModel newCustomer, AccountModel newAccount, TransactionModel newTransaction)
         {
@@ -135,6 +136,44 @@ namespace DAL
                 cxn.Close();
             }
         }
+        public void CreateTransfer(int credID, int debID, TransferModel transfer)
+        {
+            // trying to get the account details to get customer details
+            // AccountModel creditorsAccount = new AccountModel(credit.AccountID);
+            // How to get the name based on account //
+
+            using (SqlConnection cxn = new SqlConnection(cxnString))
+            {
+                SqlCommand cmdTransfer = new SqlCommand("spAddTransfer", cxn);
+                cmdTransfer.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter transactionCreditIDParam = new SqlParameter("@TransactionCreditID", SqlDbType.Int);
+                transactionCreditIDParam.Value = credID;
+
+                SqlParameter transactionDebitIDParam = new SqlParameter("@TransactionDebitID", SqlDbType.Int);
+                transactionDebitIDParam.Value = debID;
+
+                SqlParameter DestinationSortCodeParam = new SqlParameter("@DestinationSortCode", SqlDbType.NVarChar, 50);
+                DestinationSortCodeParam.Value = transfer.DestinationSortCode;
+
+                SqlParameter DestinationAccountNumberParam = new SqlParameter("@DestinationAccountNumber", SqlDbType.Int);
+                DestinationAccountNumberParam.Value = transfer.DestinationAccountNumber;
+
+                SqlParameter TransferIDParam = new SqlParameter("@TransferID", SqlDbType.Int);
+                TransferIDParam.Direction = ParameterDirection.Output;
+
+                //ADD PARAMETERS//
+                cmdTransfer.Parameters.Add(transactionCreditIDParam);
+                cmdTransfer.Parameters.Add(transactionDebitIDParam);
+                cmdTransfer.Parameters.Add(DestinationSortCodeParam);
+                cmdTransfer.Parameters.Add(DestinationAccountNumberParam);
+                cmdTransfer.Parameters.Add(TransferIDParam);
+
+                cxn.Open();
+                cmdTransfer.ExecuteNonQuery();
+                cxn.Close();
+            }
+        }
         public void CreateTransaction(TransactionModel newTransaction)
         {
             using (SqlConnection cxn = new SqlConnection(cxnString))
@@ -165,6 +204,8 @@ namespace DAL
 
                 cxn.Open();
                 cmdTransaction.ExecuteNonQuery();
+                //capturing the transaction ID in a global variable.
+                TransactionID = Convert.ToInt32(cmdTransaction.Parameters["@TransactionID"].Value);
                 cxn.Close();
             }
         }
@@ -188,6 +229,33 @@ namespace DAL
                 throw ex;
             }
             return ds;
+        }
+
+        public int GetAccountID(int accountNumber)
+        {
+            int accountID = 0;
+
+            using(SqlConnection cxn = new SqlConnection(cxnString))
+            {
+                SqlCommand cmdGetTrans = new SqlCommand("spGetAccountID", cxn);
+                cmdGetTrans.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter AccountNumberParam = new SqlParameter("@AccountNumber", SqlDbType.Int);
+                AccountNumberParam.Value = accountNumber;
+
+                cmdGetTrans.Parameters.Add(AccountNumberParam);
+
+                cxn.Open();
+                cmdGetTrans.ExecuteNonQuery();
+                SqlDataReader rd = cmdGetTrans.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    accountID = rd.GetInt32(0);
+                }
+                cxn.Close();
+            }
+            return accountID;
         }
 
         public DataSet AuditAccount(int ID)

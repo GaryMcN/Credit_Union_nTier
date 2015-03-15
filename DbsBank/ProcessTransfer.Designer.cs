@@ -40,8 +40,6 @@
             this.txtDebitSortCode = new System.Windows.Forms.TextBox();
             this.txtDebitName = new System.Windows.Forms.TextBox();
             this.grpCredit = new System.Windows.Forms.GroupBox();
-            this.txtCreditName = new System.Windows.Forms.TextBox();
-            this.lblCreditName = new System.Windows.Forms.Label();
             this.txtCreditAccNo = new System.Windows.Forms.TextBox();
             this.txtCreditSortCode = new System.Windows.Forms.TextBox();
             this.lblCreditSortCode = new System.Windows.Forms.Label();
@@ -117,6 +115,7 @@
             // 
             // txtDebitAmount
             // 
+            this.txtDebitAmount.Enabled = false;
             this.txtDebitAmount.Location = new System.Drawing.Point(112, 128);
             this.txtDebitAmount.Name = "txtDebitAmount";
             this.txtDebitAmount.Size = new System.Drawing.Size(131, 20);
@@ -124,6 +123,7 @@
             // 
             // txtDescription
             // 
+            this.txtDescription.Enabled = false;
             this.txtDescription.Location = new System.Drawing.Point(112, 102);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(131, 20);
@@ -131,6 +131,7 @@
             // 
             // txtDebitAccNo
             // 
+            this.txtDebitAccNo.Enabled = false;
             this.txtDebitAccNo.Location = new System.Drawing.Point(112, 50);
             this.txtDebitAccNo.Name = "txtDebitAccNo";
             this.txtDebitAccNo.Size = new System.Drawing.Size(131, 20);
@@ -138,6 +139,7 @@
             // 
             // txtDebitSortCode
             // 
+            this.txtDebitSortCode.Enabled = false;
             this.txtDebitSortCode.Location = new System.Drawing.Point(112, 76);
             this.txtDebitSortCode.Name = "txtDebitSortCode";
             this.txtDebitSortCode.Size = new System.Drawing.Size(131, 20);
@@ -145,6 +147,7 @@
             // 
             // txtDebitName
             // 
+            this.txtDebitName.Enabled = false;
             this.txtDebitName.Location = new System.Drawing.Point(112, 24);
             this.txtDebitName.Name = "txtDebitName";
             this.txtDebitName.Size = new System.Drawing.Size(131, 20);
@@ -152,8 +155,6 @@
             // 
             // grpCredit
             // 
-            this.grpCredit.Controls.Add(this.txtCreditName);
-            this.grpCredit.Controls.Add(this.lblCreditName);
             this.grpCredit.Controls.Add(this.txtCreditAccNo);
             this.grpCredit.Controls.Add(this.txtCreditSortCode);
             this.grpCredit.Controls.Add(this.lblCreditSortCode);
@@ -165,27 +166,10 @@
             this.grpCredit.TabStop = false;
             this.grpCredit.Text = "Credit";
             // 
-            // txtCreditName
-            // 
-            this.txtCreditName.Enabled = false;
-            this.txtCreditName.Location = new System.Drawing.Point(120, 24);
-            this.txtCreditName.Name = "txtCreditName";
-            this.txtCreditName.Size = new System.Drawing.Size(131, 20);
-            this.txtCreditName.TabIndex = 12;
-            // 
-            // lblCreditName
-            // 
-            this.lblCreditName.AutoSize = true;
-            this.lblCreditName.Location = new System.Drawing.Point(31, 27);
-            this.lblCreditName.Name = "lblCreditName";
-            this.lblCreditName.Size = new System.Drawing.Size(35, 13);
-            this.lblCreditName.TabIndex = 11;
-            this.lblCreditName.Text = "Name";
-            // 
             // txtCreditAccNo
             // 
             this.txtCreditAccNo.Enabled = false;
-            this.txtCreditAccNo.Location = new System.Drawing.Point(120, 76);
+            this.txtCreditAccNo.Location = new System.Drawing.Point(114, 50);
             this.txtCreditAccNo.Name = "txtCreditAccNo";
             this.txtCreditAccNo.Size = new System.Drawing.Size(131, 20);
             this.txtCreditAccNo.TabIndex = 10;
@@ -193,7 +177,7 @@
             // txtCreditSortCode
             // 
             this.txtCreditSortCode.Enabled = false;
-            this.txtCreditSortCode.Location = new System.Drawing.Point(120, 128);
+            this.txtCreditSortCode.Location = new System.Drawing.Point(114, 102);
             this.txtCreditSortCode.Name = "txtCreditSortCode";
             this.txtCreditSortCode.Size = new System.Drawing.Size(131, 20);
             this.txtCreditSortCode.TabIndex = 9;
@@ -201,7 +185,7 @@
             // lblCreditSortCode
             // 
             this.lblCreditSortCode.AutoSize = true;
-            this.lblCreditSortCode.Location = new System.Drawing.Point(31, 131);
+            this.lblCreditSortCode.Location = new System.Drawing.Point(25, 105);
             this.lblCreditSortCode.Name = "lblCreditSortCode";
             this.lblCreditSortCode.Size = new System.Drawing.Size(54, 13);
             this.lblCreditSortCode.TabIndex = 6;
@@ -210,7 +194,7 @@
             // lblCreditAccNo
             // 
             this.lblCreditAccNo.AutoSize = true;
-            this.lblCreditAccNo.Location = new System.Drawing.Point(31, 79);
+            this.lblCreditAccNo.Location = new System.Drawing.Point(25, 53);
             this.lblCreditAccNo.Name = "lblCreditAccNo";
             this.lblCreditAccNo.Size = new System.Drawing.Size(67, 13);
             this.lblCreditAccNo.TabIndex = 7;
@@ -236,6 +220,7 @@
             this.Controls.Add(this.grpDebit);
             this.Name = "ProcessTransfer";
             this.Text = "Transfer";
+            this.Load += new System.EventHandler(this.ProcessTransfer_Load);
             this.grpDebit.ResumeLayout(false);
             this.grpDebit.PerformLayout();
             this.grpCredit.ResumeLayout(false);
@@ -263,7 +248,5 @@
         private System.Windows.Forms.TextBox txtDebitName;
         private System.Windows.Forms.TextBox txtCreditAccNo;
         private System.Windows.Forms.TextBox txtCreditSortCode;
-        private System.Windows.Forms.Label lblCreditName;
-        private System.Windows.Forms.TextBox txtCreditName;
     }
 }
