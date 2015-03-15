@@ -39,8 +39,7 @@ namespace DbsBank
         {
             using (LogIn lg = new LogIn())
             {
-                this.Hide();
-                lg.ShowDialog();
+                this.Close();
             }
         }
 
