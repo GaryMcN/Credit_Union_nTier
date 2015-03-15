@@ -258,6 +258,33 @@ namespace DAL
             return accountID;
         }
 
+        public int GetAccountBalance(int accountNumber)
+        {
+            int balance = 0;
+
+            using (SqlConnection cxn = new SqlConnection(cxnString))
+            {
+                SqlCommand cmdGetBalance = new SqlCommand("spGetAccountBalance", cxn);
+                cmdGetBalance.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter AccountNumberParam = new SqlParameter("@AccountNumber", SqlDbType.Int);
+                AccountNumberParam.Value = accountNumber;
+
+                cmdGetBalance.Parameters.Add(AccountNumberParam);
+
+                cxn.Open();
+                cmdGetBalance.ExecuteNonQuery();
+                SqlDataReader rd = cmdGetBalance.ExecuteReader();
+                if (rd.HasRows)
+                {
+                    rd.Read();
+                    balance = rd.GetInt32(0);
+                }
+                cxn.Close();
+            }
+            return balance;
+        }
+
         public DataSet AuditAccount(int ID)
         {
             DataSet ds = null;

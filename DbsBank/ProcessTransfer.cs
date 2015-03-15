@@ -46,10 +46,19 @@ namespace DbsBank
 
             TransferModel transfer = new TransferModel(debID, credID, CreditorSortCode, CreditorAccountNumber);
 
+            CreditorBalance += Amount;
+            DebtorBalance -= Amount;
+
+            AccountModel credAcc = new AccountModel(CreditorID, CreditorBalance);
+            AccountModel debAcc = new AccountModel(DebtorID, DebtorBalance);
+
             bllMngr.CreateTransfer(credID, debID, transfer);
+            bllMngr.UpdateAccountBalance(debAcc);
+            bllMngr.UpdateAccountBalance(credAcc);
 
             MessageBox.Show("Transfer Complete");
-            
+
+            this.Close();
         }
 
         private void ProcessTransfer_Load(object sender, EventArgs e)

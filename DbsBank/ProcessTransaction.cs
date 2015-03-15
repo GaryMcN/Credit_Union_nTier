@@ -110,10 +110,11 @@ namespace DbsBank
                     procTransfer.DebtorSortCode = 101010;
                     procTransfer.DebtorBalance = balance;
                     
-                    //creditor (accouhnt money will be sent too)
+                    //creditor (account money will be sent too)
                     procTransfer.CreditorAccountNumber = int.Parse(txtRecipientAccNo.Text);
                     procTransfer.CreditorSortCode = int.Parse(txtRecipientSortCode.Text);
                     procTransfer.CreditorID = bllMngr.GetAccountID(int.Parse(txtRecipientAccNo.Text));
+                    procTransfer.CreditorBalance = bllMngr.GetAccountBalance(int.Parse(txtRecipientAccNo.Text));
 
 
                     //put values from previous form in here//
