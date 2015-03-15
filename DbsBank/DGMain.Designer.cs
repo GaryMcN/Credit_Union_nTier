@@ -53,7 +53,7 @@
             this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMain.Location = new System.Drawing.Point(12, 27);
             this.dgvMain.Name = "dgvMain";
-            this.dgvMain.Size = new System.Drawing.Size(1060, 283);
+            this.dgvMain.Size = new System.Drawing.Size(1060, 384);
             this.dgvMain.TabIndex = 0;
             // 
             // menuStrip1
@@ -160,12 +160,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1084, 322);
+            this.ClientSize = new System.Drawing.Size(1084, 423);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DGMain";
-            this.Text = "DGMain";
+            this.Text = "DBS Credit Union";
             this.Load += new System.EventHandler(this.DGMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.menuStrip1.ResumeLayout(false);

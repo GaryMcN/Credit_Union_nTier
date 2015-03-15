@@ -371,7 +371,7 @@
             this.Controls.Add(this.lblAccountType);
             this.Controls.Add(this.btnSave);
             this.Name = "EditCustomer";
-            this.Text = "EditCustomer";
+            this.Text = "Edit Customer";
             this.Load += new System.EventHandler(this.EditCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
