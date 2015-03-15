@@ -60,6 +60,8 @@ namespace DbsBank
                     dgm.ShowDialog();
                 }
                 this.Show();
+                txtPassword.Clear();
+                txtUser.Clear();
             }
             else
             {
