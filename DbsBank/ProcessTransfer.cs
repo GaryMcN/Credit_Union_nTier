@@ -24,6 +24,8 @@ namespace DbsBank
         public int DebtorSortCode { get; set; }
         public string Description { get; set; }
         public int Amount { get; set; }
+        public int DebtorBalance { get; set; }
+        public int CreditorBalance { get; set; }
 
         public ProcessTransfer()
         {

@@ -40,6 +40,7 @@
             this.withdrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transferFunsaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,16 +53,19 @@
             this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMain.Location = new System.Drawing.Point(12, 27);
             this.dgvMain.Name = "dgvMain";
-            this.dgvMain.Size = new System.Drawing.Size(1060, 222);
+            this.dgvMain.Size = new System.Drawing.Size(1060, 283);
             this.dgvMain.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.accountToolStripMenuItem});
+            this.accountToolStripMenuItem,
+            this.exportToXMLToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip1.Size = new System.Drawing.Size(1084, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -144,11 +148,19 @@
             this.viewTransactionsToolStripMenuItem.Text = "View Transactions";
             this.viewTransactionsToolStripMenuItem.Click += new System.EventHandler(this.viewTransactionsToolStripMenuItem_Click);
             // 
+            // exportToXMLToolStripMenuItem
+            // 
+            this.exportToXMLToolStripMenuItem.Name = "exportToXMLToolStripMenuItem";
+            this.exportToXMLToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.exportToXMLToolStripMenuItem.Text = "Export To XML";
+            this.exportToXMLToolStripMenuItem.Click += new System.EventHandler(this.exportToXMLToolStripMenuItem_Click);
+            // 
             // DGMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 261);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1084, 322);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -177,5 +189,6 @@
         private System.Windows.Forms.ToolStripMenuItem withdrawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transferFunsaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewTransactionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToXMLToolStripMenuItem;
     }
 }

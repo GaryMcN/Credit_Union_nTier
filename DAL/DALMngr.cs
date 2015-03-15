@@ -258,34 +258,37 @@ namespace DAL
             return accountID;
         }
 
+        public DataSet AuditAccount(int ID)
+        {
+            DataSet ds = null;
+            try
+            {
+                using(SqlConnection cxn = new SqlConnection(cxnString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    ds = new DataSet();
 
-        // THIS IS WHAT WE NEED TO GET THE ACCOPUNT NUMBER START HERE//
-        //public int GetAccount(int accountNumber)
-        //{
-        //    int accountID;
-        //    try
-        //    {
-        //        using (SqlConnection cxn = new SqlConnection(cxnString))
-        //        {
-        //            SqlCommand cmdGetAccount = new SqlCommand("spGetAccount", cxn);
-        //            cmdGetAccount.CommandType = CommandType.StoredProcedure;
+                    SqlCommand cmdAudit = new SqlCommand("spAuditAccount", cxn);
+                    cmdAudit.CommandType = CommandType.StoredProcedure;
 
-        //            SqlParameter accountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
-        //            //accountIDParam.Value = accountID;
+                    SqlParameter AccountIDParam = new SqlParameter("@AccountID", SqlDbType.Int);
+                    AccountIDParam.Value = ID;
 
-        //            cmdGetAccount.Parameters.Add(accountIDParam);
+                    cmdAudit.Parameters.Add(AccountIDParam);
 
-        //            cxn.Open();
-        //            cmdGetAccount.ExecuteNonQuery();
-        //            cxn.Close();
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    return accountID;
-        //}
+                    cxn.Open();
+                    cmdAudit.ExecuteNonQuery();
+                    da.SelectCommand = cmdAudit;
+                    da.Fill(ds);
+                    cxn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return ds;
+        }
 
         public DataTable GetFullCustomerDetails(int accountID)
         {

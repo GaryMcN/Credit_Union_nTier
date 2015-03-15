@@ -36,6 +36,21 @@ namespace BLL
             dalMngr.CreateTransfer(credID, debID, transfer);
         }
 
+        public DataSet AuditAccount(int id)
+        {
+            DataSet ds = null;
+            DALMngr dalMngr = new DALMngr();
+            try
+            {
+                ds = dalMngr.AuditAccount(id);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return ds;
+        }
+
         public DataSet GetCustomerAccounts()
         {
             DataSet ds = null;
@@ -95,7 +110,6 @@ namespace BLL
             }
             return dt;
         }
-
 
         public bool IsValidLogin(UserModel userDetails)
         {

@@ -20,7 +20,7 @@ namespace DbsBank
         public int balance;
         public int overdraftLimit;
         string amountCent = "00";
-        string centRegEx = ConfigurationManager.AppSettings["Cent"];        
+        string centRegEx = ConfigurationManager.AppSettings["Cent"];
 
         public ProcessTransaction()
         {
@@ -91,7 +91,7 @@ namespace DbsBank
                 }
                 else
                 {
-                    MessageBox.Show("Insifficient Funds");
+                    MessageBox.Show("Insufficient Funds");
                 }
             }
             else if(cboType.SelectedIndex == 0)
@@ -108,6 +108,7 @@ namespace DbsBank
                     procTransfer.DebtorName = txtName.Text;
                     procTransfer.DebtorID = accountID;
                     procTransfer.DebtorSortCode = 101010;
+                    procTransfer.DebtorBalance = balance;
                     
                     //creditor (accouhnt money will be sent too)
                     procTransfer.CreditorAccountNumber = int.Parse(txtRecipientAccNo.Text);
@@ -150,7 +151,7 @@ namespace DbsBank
             }
             else
             {
-                MessageBox.Show("Invalid cent amount: Cents set to zero");
+                MessageBox.Show("Invalid cent amount");
                 txtAmountCent.Focus();
             }
         }
