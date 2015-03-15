@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCustomer));
             this.txtOverdraftLimit = new System.Windows.Forms.TextBox();
             this.txtSortCode = new System.Windows.Forms.TextBox();
             this.txtAccountNo = new System.Windows.Forms.TextBox();
@@ -419,8 +420,9 @@
             this.Controls.Add(this.lblSortCode);
             this.Controls.Add(this.lblAccountNo);
             this.Controls.Add(this.lblAccountType);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCustomer";
-            this.Text = "AddCustomer";
+            this.Text = "Add Customer";
             this.Load += new System.EventHandler(this.AddCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
