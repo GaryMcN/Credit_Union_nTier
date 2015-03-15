@@ -26,35 +26,50 @@ namespace DbsBank
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //string pass;
-            //string user;
-            //string passHash;
-            //bool isValid;
+            LoginValidate();
+        }
 
-            //pass = txtPassword.Text;
-            //user = txtUser.Text;
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginValidate();
+        }
 
-            //BLLMngr bllMngr = new BLLMngr();
-            //passHash = bllMngr.PassEncrypt(pass);
+        private void LoginValidate()
+        {
+            string pass;
+            string user;
+            string passHash;
+            bool isValid;
 
-            //UserModel userDetails = new UserModel(user, passHash);
-            
-            //isValid = bllMngr.IsValidLogin(userDetails);
+            pass = txtPassword.Text;
+            user = txtUser.Text;
 
-            //if (isValid)
-            //{
-            //    MessageBox.Show("Valid Login");
-                using(DGMain dgm = new DGMain())
+            BLLMngr bllMngr = new BLLMngr();
+            passHash = bllMngr.PassEncrypt(pass);
+
+            UserModel userDetails = new UserModel(user, passHash);
+
+            isValid = bllMngr.IsValidLogin(userDetails);
+
+            if (isValid)
+            {
+                MessageBox.Show("Welcome To DBS Credit Union");
+                using (DGMain dgm = new DGMain())
                 {
                     this.Hide();
                     dgm.ShowDialog();
                 }
                 this.Show();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid Login");
-            //}
+            }
+            else
+            {
+                MessageBox.Show("Invalid Login");
+            }
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

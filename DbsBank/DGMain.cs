@@ -37,13 +37,18 @@ namespace DbsBank
         {
             using (LogIn lg = new LogIn())
             {
+                this.Hide();
                 lg.ShowDialog();
-                this.Close();
             }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+            using (LogIn lg = new LogIn())
+            {
+                lg.Close();
+            }
             this.Close();
         }
 
@@ -224,8 +229,6 @@ namespace DbsBank
             procTrans.balance = (int)dgvMain.SelectedRows[selectedRow].Cells[8].Value;
             procTrans.overdraftLimit = (int)dgvMain.SelectedRows[selectedRow].Cells[9].Value;
         }
-
-        
 
         private void exportToXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
