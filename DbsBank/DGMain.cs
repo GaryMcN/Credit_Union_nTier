@@ -14,7 +14,9 @@ namespace DbsBank
 {
     public partial class DGMain : Form
     {
+        ProcessTransaction procTrans = new ProcessTransaction();
         int selectedRow = 0;
+        static readonly object _locker = new object();
 
         public DGMain()
         {
@@ -167,34 +169,18 @@ namespace DbsBank
                 MessageBox.Show("Error, Please try again");
             }
         }
-
+        
         private void transferFunsaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dgvMain.SelectedRows.Count == 1)
             {
-
-                using (ProcessTransaction procTrans = new ProcessTransaction())
-                {
-                    this.Hide();
-                    procTrans.SetType(0);
-                    PassDetailsFromDgv(procTrans);
-                    procTrans.ShowDialog();
-                }
+                procTrans.SetType(0);
+                PassDetailsFromDgv(procTrans);
+                procTrans.ShowDialog();
                 this.Show();
                 PrimeMainGrid();
             }
-            else if (dgvMain.SelectedRows.Count > 1)
-            {
-                MessageBox.Show("Please select a single account");
-            }
-            else if (dgvMain.SelectedRows.Count < 1)
-            {
-                MessageBox.Show("Please select an account");
-            }
-            else
-            {
-                MessageBox.Show("Error, Please try again");
-            }
+            
         }
 
         private int GetSelectedCustomerAccount()

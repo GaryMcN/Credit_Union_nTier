@@ -47,6 +47,10 @@ namespace DataModels
         {
             AccountID = accountID;
             Balance = balance;
-        }      
+        }
+        public AccountModel(int accountID)
+        {
+            AccountID = accountID;
+        }   
     }
 }

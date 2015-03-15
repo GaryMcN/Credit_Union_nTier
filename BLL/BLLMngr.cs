@@ -13,6 +13,8 @@ namespace BLL
 {
     public class BLLMngr
     {
+        public int TransactionID;
+
         // Taking Objects from AddCustomer //
         public void CreateCustomerAccount(CustomerModel newCustomer, AccountModel newAccount, TransactionModel newTransaction)
         {
@@ -25,6 +27,13 @@ namespace BLL
         {
             DALMngr dalMngr = new DALMngr();
             dalMngr.CreateTransaction(newTransaction);
+            TransactionID = dalMngr.TransactionID;
+        }
+
+        public void CreateTransfer(int credID, int debID, TransferModel transfer)
+        {
+            DALMngr dalMngr = new DALMngr();
+            dalMngr.CreateTransfer(credID, debID, transfer);
         }
 
         public DataSet GetCustomerAccounts()
@@ -40,6 +49,14 @@ namespace BLL
                 throw ex;
             }
             return ds;
+        }
+
+        public int GetAccountID(int accountNumber)
+        {
+            int accID;
+            DALMngr dalMngr = new DALMngr();
+            accID = dalMngr.GetAccountID(accountNumber);
+            return accID;
         }
 
         public void UpdateAccountBalance(AccountModel accountToUpdate)
@@ -116,5 +133,6 @@ namespace BLL
             dalMngr.UpdateCustomersAccount(customer, account);
 
         }
+
     }
 }

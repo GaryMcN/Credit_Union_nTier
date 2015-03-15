@@ -20,8 +20,7 @@ namespace DbsBank
         public int balance;
         public int overdraftLimit;
         string amountCent = "00";
-        string centRegEx = ConfigurationManager.AppSettings["Cent"];
-        
+        string centRegEx = ConfigurationManager.AppSettings["Cent"];        
 
         public ProcessTransaction()
         {
@@ -99,9 +98,27 @@ namespace DbsBank
             {
                 using(ProcessTransfer procTransfer = new ProcessTransfer())
                 {
+                    this.Hide();
+                    // common bits
+                    procTransfer.Amount = amount;
+                    procTransfer.Description = txtDescription.Text;
+
+                    // debtor (cutomer who will send the money)
+                    procTransfer.DebtorAccountNumber = int.Parse(txtAccountNumber.Text);
+                    procTransfer.DebtorName = txtName.Text;
+                    procTransfer.DebtorID = accountID;
+                    procTransfer.DebtorSortCode = 101010;
+                    
+                    //creditor (accouhnt money will be sent too)
+                    procTransfer.CreditorAccountNumber = int.Parse(txtRecipientAccNo.Text);
+                    procTransfer.CreditorSortCode = int.Parse(txtRecipientSortCode.Text);
+                    procTransfer.CreditorID = bllMngr.GetAccountID(int.Parse(txtRecipientAccNo.Text));
+
+
                     //put values from previous form in here//
                     procTransfer.ShowDialog();
                 }
+                this.Close();
             }
 
             this.Close();
