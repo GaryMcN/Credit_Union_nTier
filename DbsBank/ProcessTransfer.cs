@@ -14,6 +14,7 @@ namespace DbsBank
 {
     public partial class ProcessTransfer : Form
     {
+        #region Global Variables
 
         public int CreditorID { get; set; }
         public int DebtorID { get; set; }
@@ -26,6 +27,8 @@ namespace DbsBank
         public int Amount { get; set; }
         public int DebtorBalance { get; set; }
         public int CreditorBalance { get; set; }
+        
+        #endregion
 
         public ProcessTransfer()
         {
@@ -37,18 +40,21 @@ namespace DbsBank
             BLLMngr bllMngr = new BLLMngr();
             string type = "Transfer";
 
+            // Creating debtor and creditor models and adding two transactions to DB
             TransactionModel debtor = new TransactionModel(DebtorID, Amount, type, Description);
             bllMngr.CreateTransaction(debtor);
-            int debID = bllMngr.TransactionID;
+            int debID = bllMngr.TransactionID; // Taking Id from debtor transaction
+
             TransactionModel creditor = new TransactionModel(CreditorID, Amount, type, Description);
             bllMngr.CreateTransaction(creditor);
-            int credID = bllMngr.TransactionID;
+            int credID = bllMngr.TransactionID; // Taking ID from creditor transaction
 
             TransferModel transfer = new TransferModel(debID, credID, CreditorSortCode, CreditorAccountNumber);
 
             CreditorBalance += Amount;
             DebtorBalance -= Amount;
 
+            // Creating models so that balance may be updated in UpdateAccountBalance() below
             AccountModel credAcc = new AccountModel(CreditorID, CreditorBalance);
             AccountModel debAcc = new AccountModel(DebtorID, DebtorBalance);
 
@@ -63,6 +69,7 @@ namespace DbsBank
 
         private void ProcessTransfer_Load(object sender, EventArgs e)
         {
+            // Assigning values from public properties to text boxes
             txtCreditAccNo.Text = CreditorAccountNumber.ToString();
             txtCreditSortCode.Text = CreditorSortCode.ToString();
             txtDebitAccNo.Text = DebtorAccountNumber.ToString();

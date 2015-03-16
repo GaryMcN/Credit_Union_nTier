@@ -36,6 +36,7 @@ namespace DbsBank
 
         private void LoginValidate()
         {
+            // Local Variables // 
             string pass;
             string user;
             string passHash;
@@ -44,13 +45,17 @@ namespace DbsBank
             pass = txtPassword.Text;
             user = txtUser.Text;
 
+            // Calling Encryption method from the BLL, this takes a password and returns the encrypted string
             BLLMngr bllMngr = new BLLMngr();
             passHash = bllMngr.PassEncrypt(pass);
 
+            //Instanciating a user 
             UserModel userDetails = new UserModel(user, passHash);
 
+            //Sending details (UserName and password) through BLL and DAL for validation at the database
             isValid = bllMngr.IsValidLogin(userDetails);
 
+            //If it comes back as a valid user allow access and go to main DataGrid
             if (isValid)
             {
                 MessageBox.Show("Welcome To DBS Credit Union");

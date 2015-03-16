@@ -15,22 +15,24 @@ namespace DbsBank
 {
     public partial class DGMain : Form
     {
+        //Global Variables and Object
         ProcessTransaction procTrans = new ProcessTransaction();
         int selectedRow = 0;
-        static readonly object _locker = new object();
 
         public DGMain()
         {
             InitializeComponent();
         }
 
+        // Method for populating and refreshing the Data Grid
         public void PrimeMainGrid()
         {
             BLLMngr bllManager = new BLLMngr();
+
+            // Getting Customer Accounts dataset from Database
             DataSet ds = bllManager.GetCustomerAccounts();
-            //clearing then populating data source//
             dgvMain.DataSource = null;
-            dgvMain.DataSource = ds.Tables[0];
+            dgvMain.DataSource = ds.Tables[0]; // Dataset assigned to Datagrid
         }
 
 
@@ -57,11 +59,12 @@ namespace DbsBank
         {
             using(Transactions tr = new Transactions())
             {
+                // Make sure the user selects only one row
                 if(dgvMain.SelectedRows.Count == 1)
                 {
                     //get cell from dgvmain convert to int//
                     int id = Convert.ToInt32(dgvMain.Rows[dgvMain.SelectedRows[0].Index].Cells["AccountID"].Value);
-                    //pass that int to transactions table//
+                    //pass that int to transactions form so it may populate its datagrids
                     tr.GetAccountID(id);
                     this.Hide();
                     tr.ShowDialog();
@@ -90,8 +93,12 @@ namespace DbsBank
                 if (dgvMain.SelectedRows.Count == 1)
                 {
                     BLLMngr bll = new BLLMngr();
+
+                    // Method to pull full customer details of one customer from database and return a DataTable
                     DataTable CustomerDetails = bll.GetFullAccountDetails((int)dgvMain.SelectedRows[selectedRow].Cells[0].Value);
 
+                    // Assigning fields from the table to variables inside EditCustomer form
+                    // These variables are then used to pre-populate the form
                     foreach (DataRow row in CustomerDetails.Rows)
                     {
                         EditCust.FirstName = row["FirstName"].ToString();
@@ -131,8 +138,9 @@ namespace DbsBank
                 using (ProcessTransaction procTrans = new ProcessTransaction())
                {
                     this.Hide();
-                    //Textboxes Set To Public//
+                    // Using SetType() method inside of ProcessTransaction to set the combo box index
                     procTrans.SetType(2);
+                    // Uses details from Datagrid to populate ProcessTransaction form
                     PassDetailsFromDgv(procTrans);
                     procTrans.ShowDialog();
                 }
@@ -181,7 +189,7 @@ namespace DbsBank
             }
         }
         
-        private void transferFunsaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void transferFundsaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dgvMain.SelectedRows.Count == 1)
             {
@@ -194,20 +202,9 @@ namespace DbsBank
             
         }
 
-        private int GetSelectedCustomerAccount()
-        {
-            int accountID;
-            int columnIndex = 0;
-            int rowIndex;
-
-            rowIndex = (int)dgvMain.SelectedRows[0].Index;
-            accountID = (int)dgvMain.Rows[rowIndex].Cells[columnIndex].Value;
-
-            return accountID;
-        }
-
         private void PassDetailsFromDgv(ProcessTransaction procTrans)
         {
+            //Populates public fields and variables in ProcessTransaction with details from the datagrid
             procTrans.txtName.Text = (dgvMain.SelectedRows[selectedRow].Cells[1].Value + " " + dgvMain.SelectedRows[selectedRow].Cells[2].Value);
             procTrans.txtAccountNumber.Text = dgvMain.SelectedRows[selectedRow].Cells[6].Value.ToString();
             procTrans.accountID = (int)dgvMain.SelectedRows[selectedRow].Cells[0].Value;
@@ -219,8 +216,11 @@ namespace DbsBank
         {
             if (dgvMain.SelectedRows.Count > 0)
             {
+                // Setting relative location for XML file to be saved to
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "/CustomerXML.xml";
+                 
                 int id = Convert.ToInt32(dgvMain.Rows[dgvMain.SelectedRows[0].Index].Cells["AccountID"].Value);
+                
                 BLLMngr bllMngr = new BLLMngr();
                 DataTable dt = bllMngr.GetFullAccountDetails(id);
                 dt.TableName = "CustomerXML";

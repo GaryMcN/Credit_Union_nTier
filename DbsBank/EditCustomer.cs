@@ -14,7 +14,7 @@ namespace DbsBank
 {
     public partial class EditCustomer : Form
     {
-        // Public variables for access in DGMain //
+        #region Global Variables
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
@@ -32,7 +32,8 @@ namespace DbsBank
         public string CustomerID { get; set; }
 
         public bool EditOnly { get; set; }
-
+        #endregion
+        
         public EditCustomer()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace DbsBank
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // Creating Account and customer models to update an existing customer account
             BLLMngr bllMngr = new BLLMngr();
             int acNum;
             int.TryParse(AccountNo, out acNum);
@@ -82,6 +84,7 @@ namespace DbsBank
 
         private void EditCustomer_Load(object sender, EventArgs e)
         {
+            // Disabling textboxes as per requirement
             txtFirstName.Enabled = false;
             txtSurname.Enabled = false;
             txtInitialBalance.Enabled = false;
@@ -89,7 +92,8 @@ namespace DbsBank
             rdoSavings.Enabled = false;
             txtAccountNo.Enabled = false;
             txtSortCode.Enabled = false;
-
+            
+            // Global variables (set from DGMain) are setting values in the text boxes
             txtFirstName.Text = FirstName;
             txtSurname.Text = Surname;
             txtEmail.Text = Email;

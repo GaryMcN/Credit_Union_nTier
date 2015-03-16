@@ -30,15 +30,14 @@ namespace DbsBank
         private void ProcessTransaction_Load(object sender, EventArgs e)
         {
             string sort = ConfigurationManager.AppSettings["SortCode"];
-            txtSortCode.Text += sort;
-            // THIS APPENDS INSTEAD OF VALIDATING //
-            //string centRegEx = ConfigurationManager.AppSettings["Cent"];
-            //txtAmountCent.Text += cent;
+            txtSortCode.Text = sort;
+            // Sets uneditable combo box style
             cboType.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Enabling Recipient Account No and Sort code if Transfer
             if (cboType.SelectedItem.ToString() == "Transfer")
             {
                 txtRecipientAccNo.Enabled = true;
@@ -60,23 +59,21 @@ namespace DbsBank
             string description = txtDescription.Text;
             string amountEuro = txtAmountEuro.Text.Trim();
 
+            // Takes Euro and Cent values, Adds them and stores cent value as int in Database
             string amountString = amountEuro + amountCent;
             int amount;
             int.TryParse(amountString, out amount);
             //method used to update the balance in users account
             int currentBalance = CurrentBalance(balance, amount);
 
-            // Account obj created to update the balance //
             AccountModel account = new AccountModel(accountID, currentBalance);
-
-            // Transaction obj created //
             TransactionModel transaction = new TransactionModel(accountID, amount, type, description);
 
-            // BLL instanciated //
             BLLMngr bllMngr = new BLLMngr();
 
             if(cboType.SelectedIndex == 2)
             {
+                // Making a record of transaction and Updating Balance
                 bllMngr.CreateTransaction(transaction);
                 bllMngr.UpdateAccountBalance(account);
                 MessageBox.Show("Deposit Complete");
@@ -99,7 +96,7 @@ namespace DbsBank
                 using(ProcessTransfer procTransfer = new ProcessTransfer())
                 {
                     this.Hide();
-                    // common bits
+                    // common variables
                     procTransfer.Amount = amount;
                     procTransfer.Description = txtDescription.Text;
 
@@ -110,12 +107,11 @@ namespace DbsBank
                     procTransfer.DebtorSortCode = 101010;
                     procTransfer.DebtorBalance = balance;
                     
-                    //creditor (account money will be sent too)
+                    //creditor (account to which money will be sent)
                     procTransfer.CreditorAccountNumber = int.Parse(txtRecipientAccNo.Text);
                     procTransfer.CreditorSortCode = int.Parse(txtRecipientSortCode.Text);
                     procTransfer.CreditorID = bllMngr.GetAccountID(int.Parse(txtRecipientAccNo.Text));
                     procTransfer.CreditorBalance = bllMngr.GetAccountBalance(int.Parse(txtRecipientAccNo.Text));
-
 
                     //put values from previous form in here//
                     procTransfer.ShowDialog();
@@ -126,12 +122,13 @@ namespace DbsBank
             this.Close();
         }
 
+        // Public method which may be used by any form leading here to set the combo box value
         public void SetType(int val)
         {
             cboType.SelectedIndex = val;
         }
 
-        // method only used in withdraw or deposite for updating the account balance of a customer
+        // method only used in withdraw or deposit for updating the account balance of a customer
         public int CurrentBalance(int balance, int amount)
         {
             if (cboType.SelectedIndex == 2)
@@ -144,6 +141,7 @@ namespace DbsBank
             }
         }
 
+        // Regular expression to validate cent amount when the textbox is left
         private void txtAmountCent_Leave(object sender, EventArgs e)
         {
             if (Regex.IsMatch(txtAmountCent.Text, centRegEx))

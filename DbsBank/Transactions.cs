@@ -14,6 +14,7 @@ namespace DbsBank
     public partial class Transactions : Form
     {
         int ID;
+
         public Transactions()
         {
             InitializeComponent();

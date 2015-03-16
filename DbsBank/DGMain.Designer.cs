@@ -139,7 +139,7 @@
             this.transferFunsaToolStripMenuItem.Name = "transferFunsaToolStripMenuItem";
             this.transferFunsaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.transferFunsaToolStripMenuItem.Text = "Transfer Funds";
-            this.transferFunsaToolStripMenuItem.Click += new System.EventHandler(this.transferFunsaToolStripMenuItem_Click);
+            this.transferFunsaToolStripMenuItem.Click += new System.EventHandler(this.transferFundsaToolStripMenuItem_Click);
             // 
             // viewTransactionsToolStripMenuItem
             // 
