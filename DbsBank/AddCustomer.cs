@@ -63,9 +63,7 @@ namespace DbsBank
             int amount;
             int.TryParse(amountString, out amount);
 
-            //int initialBalance;
-            //int.TryParse(txtInitialBalance.Text, out initialBalance);
-            
+
             string accountType = "";
             if (rdoCurrent.Checked)
             {
